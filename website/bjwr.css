@@ -1,0 +1,30 @@
+#comment {
+	color: #0076ff;
+	font-style: italic;
+}
+
+#include {
+	color: #005915;
+}
+
+#fdecl {
+	color: #1515ff;
+}
+
+#text {
+	color: #007f08;
+}
+
+/* Make the href's look nice */
+a {
+        text-decoration: none;
+        color: red;
+}
+a:visited {
+        text-decoration: none;
+        color: red;
+}
+a:hover {
+        text-decoration: underline;
+        color: red;
+}
