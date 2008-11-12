@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008 Bert JW Regeer;
+ * Copyright (c) 2008 {Bert JW Regeer}[http://bertjwregeer.com];
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -20,10 +20,10 @@
 
 int main () {
 	std::cout << "Welcome to Berts website" << std::endl;
-	std::cout << "\t1. About me" << std::endl;
-	std::cout << "\t2. Projects" << std::endl;
-	std::cout << "\t3. Resume" << std::endl;
-	std::cout << "\t4. Contact" << std::endl;
+	std::cout << "\t1. {About_me}[./About_me.html]" << std::endl;
+	std::cout << "\t2. {Projects}[./Projects.html]" << std::endl;
+	std::cout << "\t3. {Resume}[./Resume.html]" << std::endl;
+	std::cout << "\t4. {Contact}[./Contact.html]" << std::endl;
 
 	int input;
 
@@ -32,10 +32,10 @@ int main () {
 
         // We assume that execl will not fail!
 	switch (input) {
-	        case 1: execl("./About me", "About me", (char *)0);
-                case 2: execl("./Projects", "Projects", (char *)0);
-                case 3: execl("./Resume", "Resume", (char *)0);
-                case 4: execl("./Contact", "Contact", (char *)0);
+	        case 1: execl("{./About_me}[./About_me.html]", "{About_me}[./About_me.html]", (char *)0);
+                case 2: execl("{./Projects}[./Projects.html]", "{Projects}[./Projects.html]", (char *)0);
+                case 3: execl("{./Resume}[./Resume.html]", "{Resume}[./Resume.html]", (char *)0);
+                case 4: execl("{./Contact}[./Contact.html]", "{Contact}[./Contact.html]", (char *)0);
                 default:
                         std::cerr << "Bad selection" << std::endl;
                         return 1;
