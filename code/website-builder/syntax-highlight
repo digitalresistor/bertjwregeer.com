@@ -1,0 +1,69 @@
+#!/usr/bin/sed -E -f 
+
+# Remove anything HTML is going to hate us for
+s/</\&lt;/g
+s/>/\&gt;/g
+
+# Multiline comments
+
+/\/\*\*/,/\*\*\//{
+
+	# Replace the first instance with a span
+	/\/\*\*/c\
+	<span class="comment">/**
+
+	# Close the span
+	/\*\*\//c\
+	**/</span>
+
+	# We parse URL's in comments, but nothing else!
+	b url
+}
+
+/\/\// {
+	s/(\/\/ .*)/<span class=\"comment\">\1<\/span>/
+	
+	b url
+}
+
+# Pre-processor
+/^#.*/ {
+	# We add a span to syntax highlight it
+	s/(#.*)/<span class=\"preproc\">\1<\/span>/
+	
+	# Only process URL's, nothing else!
+	b url
+}
+
+# Replace text within quotes
+s/\"([^"]*)\"/\"<span class=\"text\">\1<\/span>\"/g
+
+# We syntax highlight the standard library stuff (not sure if I want to turn this on)
+
+# s/(std::[^ (]+)/<span class=\"keyword\">\1<\/span>/g
+
+# Types
+s/(int)/<span class=\"keyword\">\1<\/span>/g
+s/(char)/<span class=\"keyword\">\1<\/span>/g
+s/(struct)/<span class=\"keyword\">\1<\/span>/g
+
+# Keywords
+s/(switch)/<span class=\"keyword\">\1<\/span>/g
+s/(case)/<span class=\"keyword\">\1<\/span>/g
+s/(default)/<span class=\"keyword\">\1<\/span>/g
+s/(new)/<span class=\"keyword\">\1<\/span>/g
+s/(delete)/<span class=\"keyword\">\1<\/span>/g
+s/(typedef)/<span class=\"keyword\">\1<\/span>/g
+s/(return)/<span class=\"keyword\">\1<\/span>/g
+s/(public:)/<span class=\"keyword\">\1<\/span>/g
+s/(private:)/<span class=\"keyword\">\1<\/span>/g
+s/(protected:)/<span class=\"keyword\">\1<\/span>/g
+s/(const)/<span class=\"keyword\">\1<\/span>/g
+s/(friend)/<span class=\"keyword\">\1<\/span>/g
+
+# This one is special, if we are not careful we also match class= from all the above <span>'s.
+s/(class )/<span class=\"keyword\">class<\/span> /g
+
+: url
+# Replace URL's {Text here}[URL here]
+s/\{([^\{]*)\}\[([^\[]*)\]/<a href=\"\2\" alt=\"\1\">\1<\/a>/g
