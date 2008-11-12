@@ -1,17 +1,17 @@
-#comment {
+.comment {
 	color: #0076ff;
 	font-style: italic;
 }
 
-#include {
+.preproc {
 	color: #005915;
 }
 
-#fdecl {
+.keyword {
 	color: #1515ff;
 }
 
-#text {
+.text {
 	color: #007f08;
 }
 
