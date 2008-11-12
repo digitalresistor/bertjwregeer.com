@@ -31,6 +31,9 @@ s/>/\&gt;/g
 	# We add a span to syntax highlight it
 	s/(#.*)/<span class=\"preproc\">\1<\/span>/
 	
+	# We want to make links out of the headers we have written
+	s/#include \"(.*)\"/#include "<a href=\"\.\/\1tml\" alt=\"\1\">\1<\/a>"/
+	
 	# Only process URL's, nothing else!
 	b url
 }
