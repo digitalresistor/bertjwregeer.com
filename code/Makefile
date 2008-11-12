@@ -1,5 +1,5 @@
 OPTIMIZE ?=0
-CXXFLAGS = -I. -I.. -Wall -pipe -O${OPTIMIZE} ${DEBUG}
+CXXFLAGS = -I. -Wall -pipe -O${OPTIMIZE} ${DEBUG}
 
 all: Main About_me Resume Projects Contact
 
@@ -8,9 +8,6 @@ Resume: Resume.cc
 Projects: Projects.cc
 Contact: Contact.cc
 Main: Main.cc
-
-.cc.o:
-	$(CXX) ${CXXFLAGS} -c $<
 	
 clean:
-	/bin/rm -f About_me Main
+	/bin/rm -f About_me Main Resume Projects Contact
