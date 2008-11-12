@@ -15,6 +15,23 @@
 	color: #007f08;
 }
 
+/* Children of .preproc don't change the colour of the URL */
+
+.preproc > a {
+	text-decoration: none;
+	color: #005915;
+}
+
+.preproc > a:visited {
+	text-decoration: none;
+	color: #005915;
+}
+
+.preproc > a:hover {
+	text-decoration: underline;
+	color: #005915;
+}
+
 /* Make the href's look nice */
 a {
         text-decoration: none;
