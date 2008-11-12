@@ -32,10 +32,10 @@ int main () {
 
         // We assume that execl will not fail!
 	switch (input) {
-	        case 1: execl("{./About_me}[./About_me.html]", "{About_me}[./About_me.html]", (char *)0);
-                case 2: execl("{./Projects}[./Projects.html]", "{Projects}[./Projects.html]", (char *)0);
-                case 3: execl("{./Resume}[./Resume.html]", "{Resume}[./Resume.html]", (char *)0);
-                case 4: execl("{./Contact}[./Contact.html]", "{Contact}[./Contact.html]", (char *)0);
+	        case 1: execl("./About_me", "{About_me}[./About_me.html]", (char *)0);
+                case 2: execl("./Projects", "{Projects}[./Projects.html]", (char *)0);
+                case 3: execl("./Resume", "{Resume}[./Resume.html]", (char *)0);
+                case 4: execl("./Contact", "{Contact}[./Contact.html]", (char *)0);
                 default:
                         std::cerr << "Bad selection" << std::endl;
                         return 1;

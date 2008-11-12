@@ -45,6 +45,6 @@ int main () {
         delete Bert;
 
 	// Re-run the menu application to give the visitor more selections: 
-	execl("{./Main}[./index.html]", "{Main}[./index.html]", (char *)0);
+	execl("./Main", "{Main}[./index.html]", (char *)0);
         return 0;
 }
