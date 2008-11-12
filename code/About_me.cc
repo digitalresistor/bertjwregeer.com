@@ -26,13 +26,10 @@ int main () {
         
         name = new std::string("Bert JW Regeer");
         // TODO: Actually write something about yourself!
-        biography = new std::string("Here comes the entire biography for "
-                    "Bert JW Regeer, as of right now it is not much but "
-                    "it will do for now. More to come later, keep "
-                    "watching!");
+        biography = new std::string("Please be patient as I am still updating my portfolio website!");
                     
         education = new Education;
-        education->schoolname = "University of Advancing Technology";
+        education->schoolname = "{University of Advancing Technology}[http://uat.edu]";
         education->degree     = "Bachelor of Science: Software Engineering";
         education->major      = "Programming";
         
