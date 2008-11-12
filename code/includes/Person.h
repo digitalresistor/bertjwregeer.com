@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008 Bert JW Regeer;
+ * Copyright (c) 2008 {Bert JW Regeer}[http://bertjwregeer.com];
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,6 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
 **/
+
 #ifndef _PERSON_H_
 #define _PERSON_H_
 
@@ -29,7 +30,11 @@ typedef struct education_container
 class Person  {
         public:
                 Person (std::string * name, std::string * biography, Education * education) : _name(name), _biography(biography), _education(education) { };
-                ~Person ();
+                ~Person () {
+                        delete _name;
+                        delete _biography;
+                        delete _education;
+                };
         
                 friend std::ostream& operator<< (std::ostream& o, const Person& person);
 
@@ -43,9 +48,9 @@ std::ostream& operator<< (std::ostream& o, const Person& person) {
         o << "Name: " << *(person._name) << std::endl;
         o << "Biography: " << std::endl << *(person._biography) << std::endl;
         o << "Education: " << std::endl;
-        o << "\tSchool: " << (*(person._education)).schoolname << std::endl;
-        o << "\tDegree: " << (*(person._education)).degree << std::endl;
-        o << "\tMajor: " << (*(person._education)).major << std::endl;
+        o << "\tSchool: "  << (*(person._education)).schoolname << std::endl;
+        o << "\tDegree: "  << (*(person._education)).degree << std::endl;
+        o << "\tMajor: "   << (*(person._education)).major << std::endl;
         
         return o;
 }
