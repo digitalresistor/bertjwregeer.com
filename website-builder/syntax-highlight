@@ -21,7 +21,7 @@ s/>/\&gt;/g
 }
 
 /\/\// {
-	s/(\/\/ .*)/<span class=\"comment\">\1<\/span>/
+	s/(\/\/ .*)/<span class="comment">\1<\/span>/
 	
 	b url
 }
@@ -29,44 +29,96 @@ s/>/\&gt;/g
 # Pre-processor
 /^#.*/ {
 	# We add a span to syntax highlight it
-	s/(#.*)/<span class=\"preproc\">\1<\/span>/
+	s/(#.*)/<span class="preproc">\1<\/span>/
 	
 	# We want to make links out of the headers we have written
-	s/#include \"(.*)\"/#include "<a href=\"\.\/\1tml\" alt=\"\1\">\1<\/a>"/
+	s/#include \"(.*)\"/#include "<a href="\.\/\1tml" alt="\1">\1<\/a>"/
 	
-	# Only process URL's, nothing else!
-	b url
+	# Process no more
+	b end
 }
-
-# Replace text within quotes
-s/\"([^"]*)\"/\"<span class=\"text\">\1<\/span>\"/g
 
 # We syntax highlight the standard library stuff (not sure if I want to turn this on)
 
-# s/(std::[^ (]+)/<span class=\"keyword\">\1<\/span>/g
+# s/(std::[^ (]+)/<keyword>\1<\/keyword>/g
 
 # Types
-s/(int)/<span class=\"keyword\">\1<\/span>/g
-s/(char)/<span class=\"keyword\">\1<\/span>/g
-s/(struct)/<span class=\"keyword\">\1<\/span>/g
+s/(int)/<keyword>\1<\/keyword>/g
+s/(char)/<keyword>\1<\/keyword>/g
+s/(struct)/<keyword>\1<\/keyword>/g
 
 # Keywords
-s/(switch)/<span class=\"keyword\">\1<\/span>/g
-s/(case)/<span class=\"keyword\">\1<\/span>/g
-s/(default)/<span class=\"keyword\">\1<\/span>/g
-s/(new)/<span class=\"keyword\">\1<\/span>/g
-s/(delete)/<span class=\"keyword\">\1<\/span>/g
-s/(typedef)/<span class=\"keyword\">\1<\/span>/g
-s/(return)/<span class=\"keyword\">\1<\/span>/g
-s/(public:)/<span class=\"keyword\">\1<\/span>/g
-s/(private:)/<span class=\"keyword\">\1<\/span>/g
-s/(protected:)/<span class=\"keyword\">\1<\/span>/g
-s/(const)/<span class=\"keyword\">\1<\/span>/g
-s/(friend)/<span class=\"keyword\">\1<\/span>/g
+s/(switch)/<keyword>\1<\/keyword>/g
+s/(case)/<keyword>\1<\/keyword>/g
+s/(default)/<keyword>\1<\/keyword>/g
+s/(new)/<keyword>\1<\/keyword>/g
+s/(delete)/<keyword>\1<\/keyword>/g
+s/(typedef)/<keyword>\1<\/keyword>/g
+s/(return)/<keyword>\1<\/keyword>/g
+s/(const)/<keyword>\1<\/keyword>/g
+s/(friend)/<keyword>\1<\/keyword>/g
+
+s/(public:)/<keyword>\1<\/keyword>/g
+s/(private:)/<keyword>\1<\/keyword>/g
+s/(protected:)/<keyword>\1<\/keyword>/g
 
 # This one is special, if we are not careful we also match class= from all the above <span>'s.
-s/(class )/<span class=\"keyword\">class<\/span> /g
+s/(class )/<keyword>\1<\/keyword> /g
+
+# Literal strings, we want to highlight them, but there is a catch
+# in C++ we are allowed to start a literal string on one line, and then continue it on the next line
+# this means we need to make sure we parse that correctly!
+
+/"/ {
+
+	# Are both the opening and closing quote on the same line? If so, branch to noloop
+	/"[^"]*"/b noloop
+	
+	# No, they are apparently not. This means we replace the quote with the correct span tag
+	s/"([^"]*)/<text>"\1/
+	
+	# Label the loop
+	: loop
+	
+	# Append the next line from the input file to the current line, move cursor forward by one
+	N
+	
+	# Did we find another quote character yet? If not, we branch to label loop
+	/"[^"]+"/!b loop
+	
+	# Ah, we found it. Replace it with the correct span tag.
+	s/("[^"]+)"/\1"<\/text>/
+	
+	b endquote
+	
+	# Label the noloop branch
+	: noloop
+	
+	s/"([^"]*)"/<text>"\1"<\/text>/g
+	
+	: endquote
+	
+	# String literals should not contain "syntax" highlighted code. So we remove all keyword tags from them
+	# Label removetags
+	: removetags
+
+	# Remove <keyword> and </keyword> from the source file
+	s/("[^<]+)<keyword>([^"]+")/\1\2/g
+	s/("[^<]+)<\/keyword>([^"]+")/\1\2/g
+
+	# Check if there are any more keyword tags left in this part of the string literal
+	# if so, we branch back to removetags. We basically loop until this condition returns false.
+	/"[^"]+<keyword>[^"]+"/b removetags
+}
 
 : url
 # Replace URL's {Text here}[URL here]
-s/\{([^\{]*)\}\[([^\[]*)\]/<a href=\"\2\" alt=\"\1\">\1<\/a>/g
+s/\{([^\}]*)\}\[([^\[]*)\]/<a href="\2" alt="\1">\1<\/a>/g
+
+: end
+
+# Replace <keyword> and </keyword> with their span equivalent
+s/<keyword>/<span class="keyword">/g
+s/<\/keyword>/<\/span>/g
+s/<text>/<span class="text">/g
+s/<\/text>/<\/span>/g
