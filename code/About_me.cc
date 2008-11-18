@@ -26,7 +26,7 @@ int main () {
         
         name = new std::string("Bert JW Regeer");
         // TODO: Actually write something about yourself!
-        biography = new std::string("Please be patient as I am still updating my portfolio website!");
+        biography = new std::string("Please be patient as I am still updating my website!");
                     
         education = new Education;
         education->schoolname = "{University of Advancing Technology}[http://uat.edu]";
@@ -36,7 +36,6 @@ int main () {
         Bert = new Person(name, biography, education);
 
         // Print the results to the screen
-        
         std::cout << (*Bert) << std::endl << std::flush;
         
         delete Bert;

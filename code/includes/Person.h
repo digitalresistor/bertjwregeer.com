@@ -45,7 +45,7 @@ class Person  {
 };
 
 std::ostream& operator<< (std::ostream& o, const Person& person) {
-        o << "Name: " << *(person._name) << std::endl;
+        o << "Name: "      << *(person._name) << std::endl;
         o << "Biography: " << std::endl << *(person._biography) << std::endl;
         o << "Education: " << std::endl;
         o << "\tSchool: "  << (*(person._education)).schoolname << std::endl;
