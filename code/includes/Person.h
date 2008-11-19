@@ -29,7 +29,9 @@ typedef struct education_container
 
 class Person  {
         public:
-                Person (std::string * name, std::string * biography, Education * education) : _name(name), _biography(biography), _education(education) { };
+                Person (std::string * name, std::string * biography, Education * education) 
+			: _name(name), _biography(biography), _education(education) { };
+			
                 ~Person () {
                         delete _name;
                         delete _biography;
