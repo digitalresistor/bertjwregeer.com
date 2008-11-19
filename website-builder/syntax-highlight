@@ -4,28 +4,6 @@
 s/</\&lt;/g
 s/>/\&gt;/g
 
-# Multiline comments
-
-/\/\*\*/,/\*\*\//{
-
-	# Replace the first instance with a span
-	/\/\*\*/c\
-	<span class="comment">/**
-
-	# Close the span
-	/\*\*\//c\
-	**/</span>
-
-	# We parse URL's in comments, but nothing else!
-	b url
-}
-
-/\/\// {
-	s/(\/\/ .*)/<span class="comment">\1<\/span>/
-	
-	b url
-}
-
 # Pre-processor
 /^#.*/ {
 	# We add a span to syntax highlight it
@@ -34,8 +12,8 @@ s/>/\&gt;/g
 	# We want to make links out of the headers we have written
 	s/#include \"(.*)\"/#include "<a href="\.\/\1tml" alt="\1">\1<\/a>"/
 	
-	# Process no more
-	b end
+	# For pre-processor directives we do no other processing what so ever!
+	b
 }
 
 # We syntax highlight the standard library stuff (not sure if I want to turn this on)
@@ -65,34 +43,87 @@ s/(protected:)/<keyword>\1<\/keyword>/g
 # This one is special, if we are not careful we also match class= from all the above <span>'s.
 s/(class )/<keyword>\1<\/keyword> /g
 
-# Literal strings, we want to highlight them, but there is a catch
-# in C++ we are allowed to start a literal string on one line, and then continue it on the next line
-# this means we need to make sure we parse that correctly!
+# Multiline comments
+# Issues:
+#
+# It is valid C/C++ to do this:
+#
+# /* this is a comment */ myclass = new myclass(); /* comment again */
+# this parse has one hell of a greedy regular expression, if you can figure out a way to make it not-greedy, you sir are a god
+# back to the issue
+# instead of turning that into the following <comment> <code> <comment> it becomes <comment>. Yes, the entire line
+# is now a comment. That is bad. So don't use multiple comments on the same line, and you will be fine!
 
-/"/ {
 
+/\/\*/ {
 	# Are both the opening and closing quote on the same line? If so, branch to noloop
-	/"[^"]*"/b noloop
+	/\/\*([^\*][^\/]+)*\*\//b cnoloop
 	
 	# No, they are apparently not. This means we replace the quote with the correct span tag
-	s/"([^"]*)/<text>"\1/
+	# s/(\/\*.*$)/<comment>\1/
 	
 	# Label the loop
-	: loop
+	: cloop
 	
 	# Append the next line from the input file to the current line, move cursor forward by one
 	N
 	
 	# Did we find another quote character yet? If not, we branch to label loop
-	/"[^"]+"/!b loop
-	
-	# Ah, we found it. Replace it with the correct span tag.
-	s/("[^"]+)"/\1"<\/text>/
-	
-	b endquote
+	/\/\*.*\*\//!b cloop
 	
 	# Label the noloop branch
-	: noloop
+	: cnoloop
+	
+	s/(\/\*.*\*\/)/<comment>\1<\/comment>/g
+	
+	: endcomment
+
+	: cremovetags
+	
+	s/((\/\*)[^<]+)<keyword>(.*\*\/)/\1\3/g
+	s/((\/\*)[^<]+)<\/keyword>(.*\*\/)/\1\3/g
+	
+	/\/\*[^<]+<keyword>([^\*][^\/]+)*\*\//b cremovetags
+	
+	# We don't want to process literal strings
+	
+	b end
+}
+
+/\/\/ .*/ {
+	s/(\/\/ .*)/<comment>\1<\/comment>/
+	
+	: cpremovetags
+
+	s/(\/\/ [^<]+)<keyword>(.*)$/\1\2/g
+	s/(\/\/ [^<]+)<\/keyword>(.*)$/\1\2/g
+	
+	/\/\/ [^<]+<keyword>.*$/b cpremovetags
+	
+	# We don't want to process literal strings
+	
+	b end
+}
+
+# Literal strings, we want to highlight them, but there is a catch
+# in C++ we are allowed to start a literal string on one line, and then continue it on the next line
+# this means we need to make sure we parse that correctly!
+
+/"/ {
+	# Are both the opening and closing quote on the same line? If so, branch to noloop
+	/"[^"]*"/b qnoloop
+	
+	# Label the loop
+	: qloop
+	
+	# Append the next line from the input file to the current line, move cursor forward by one
+	N
+	
+	# Did we find another quote character yet? If not, we branch to label loop
+	/"[^"]+"/!b qloop
+	
+	# Label the noloop branch
+	: qnoloop
 	
 	s/"([^"]*)"/<text>"\1"<\/text>/g
 	
@@ -100,7 +131,7 @@ s/(class )/<keyword>\1<\/keyword> /g
 	
 	# String literals should not contain "syntax" highlighted code. So we remove all keyword tags from them
 	# Label removetags
-	: removetags
+	: qremovetags
 
 	# Remove <keyword> and </keyword> from the source file
 	s/("[^<]+)<keyword>([^"]+")/\1\2/g
@@ -108,17 +139,15 @@ s/(class )/<keyword>\1<\/keyword> /g
 
 	# Check if there are any more keyword tags left in this part of the string literal
 	# if so, we branch back to removetags. We basically loop until this condition returns false.
-	/"[^"]+<keyword>[^"]+"/b removetags
+	/"[^"]+<keyword>[^"]+"/b qremovetags
 }
-
-: url
-# Replace URL's {Text here}[URL here]
-s/\{([^\}]*)\}\[([^\[]*)\]/<a href="\2" alt="\1">\1<\/a>/g
 
 : end
 
-# Replace <keyword> and </keyword> with their span equivalent
-s/<keyword>/<span class="keyword">/g
-s/<\/keyword>/<\/span>/g
-s/<text>/<span class="text">/g
-s/<\/text>/<\/span>/g
+s/<([^\/][^>]+)>/<span class="\1">/g
+s/<\/[^>]+>/<\/span>/g
+
+: url
+
+# Replace URL's {Text here}[URL here]
+s/\{([^\}]*)\}\[([^\[]*)\]/<a href="\2" alt="\1">\1<\/a>/g
