@@ -22,16 +22,16 @@ int main () {
 	std::cout << "Contacting Bert"		<< std::endl;
 	std::cout << 				   std::endl;
 	std::cout << "Email: "			<< std::endl;
-	std::cout << "1. {bertjw@regeer.org}[mailto:bertjw@regeer.org]"	<< std::endl;
-	std::cout << "2. {berregee@uat.edu}[mailto:berregee@uat.edu]"	<< std::endl;
+	std::cout << "\t1. {bertjw@regeer.org}[mailto:bertjw@regeer.org]"	<< std::endl;
+	std::cout << "\t2. {berregee@uat.edu}[mailto:berregee@uat.edu]"	<< std::endl;
 	std::cout <<                               std::endl;
 	std::cout << "Phone: "			<< std::endl;
-	std::cout << "1. +1-973-342-4882"	<< std::endl;
+	std::cout << "\t1. +1-973-342-4882"	<< std::endl;
 	std::cout << 				   std::endl;
 	std::cout << "Google chat/Jabber: "	<< std::endl;
-	std::cout << "1. bertjw@regeer.org"	<< std::endl;
+	std::cout << "\t1. bertjw@regeer.org"	<< std::endl;
 	std::cout << 				   std::endl;
-	std::cout << "Contact via email is prefered." << std::endl;
+	std::cout << "Contact via email is preferred." << std::endl;
 
 	// Re-run the menu application to give the visitor more selections: 
 	execl("./Main", "{Main}[./index.html]", (char *)0);
