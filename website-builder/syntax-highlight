@@ -125,10 +125,6 @@ s/(class )/<keyword>\1<\/keyword> /g
 	# Label the noloop branch
 	: qnoloop
 	
-	s/"([^"]*)"/<text>"\1"<\/text>/g
-	
-	: endquote
-	
 	# String literals should not contain "syntax" highlighted code. So we remove all keyword tags from them
 	# Label removetags
 	: qremovetags
@@ -140,6 +136,8 @@ s/(class )/<keyword>\1<\/keyword> /g
 	# Check if there are any more keyword tags left in this part of the string literal
 	# if so, we branch back to removetags. We basically loop until this condition returns false.
 	/"[^"]+<keyword>[^"]+"/b qremovetags
+	
+	s/"([^"]*)"/"<text>\1<\/text>"/g
 }
 
 : end
