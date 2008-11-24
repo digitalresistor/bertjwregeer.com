@@ -19,42 +19,43 @@
 #define _PERSON_H_
 
 #include <iostream>
+#include <string>
 
 typedef struct education_container
 {
-        std::string schoolname;
-        std::string degree;
-        std::string major;
+	std::string schoolname;
+	std::string degree;
+	std::string major;
 } Education;
 
 class Person  {
-        public:
-                Person (std::string * name, std::string * biography, Education * education) 
+	public:
+		Person (std::string * name, std::string * biography, Education * education) 
 			: _name(name), _biography(biography), _education(education) { };
-			
-                ~Person () {
-                        delete _name;
-                        delete _biography;
-                        delete _education;
-                };
-        
-                friend std::ostream& operator<< (std::ostream& o, const Person& person);
 
-        private:
-                std::string * _name;
-                std::string * _biography;
-                Education   * _education;
+		~Person () {
+			delete _name;
+			delete _biography;
+			delete _education;
+		};
+
+		friend std::ostream& operator<< (std::ostream& o, const Person& person);
+
+	private:
+		std::string * _name;
+		std::string * _biography;
+		Education   * _education;
 };
 
 std::ostream& operator<< (std::ostream& o, const Person& person) {
-        o << "Name: "      << *(person._name) << std::endl;
-        o << "Biography: " << std::endl << *(person._biography) << std::endl;
-        o << "Education: " << std::endl;
-        o << "\tSchool: "  << (*(person._education)).schoolname << std::endl;
-        o << "\tDegree: "  << (*(person._education)).degree << std::endl;
-        o << "\tMajor: "   << (*(person._education)).major << std::endl;
-        
-        return o;
+	o << "Name: "      << *(person._name) << std::endl;
+	o << "Biography: " << std::endl << *(person._biography) << std::endl;
+	o << "Education: " << std::endl;
+	o << "\tSchool: "  << (*(person._education)).schoolname << std::endl;
+	o << "\tDegree: "  << (*(person._education)).degree << std::endl;
+	o << "\tMajor: "   << (*(person._education)).major << std::endl;
+
+	return o;
 }
 
 #endif /* _PERSON_H_ */
