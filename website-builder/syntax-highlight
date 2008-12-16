@@ -95,10 +95,10 @@ s/(class )/<keyword>\1<\/keyword> /g
 	
 	: cpremovetags
 
-	s/(\/\/ [^<]+)<keyword>(.*)$/\1\2/g
-	s/(\/\/ [^<]+)<\/keyword>(.*)$/\1\2/g
+	s/(\/\/ [^<]*)<keyword>(.*)$/\1\2/g
+	s/(\/\/ [^<]*)<\/keyword>(.*)$/\1\2/g
 	
-	/\/\/ [^<]+<keyword>.*$/b cpremovetags
+	/\/\/ [^<]*<keyword>.*$/b cpremovetags
 	
 	# We don't want to process literal strings
 	
@@ -130,14 +130,14 @@ s/(class )/<keyword>\1<\/keyword> /g
 	: qremovetags
 
 	# Remove <keyword> and </keyword> from the source file
-	s/("[^<]+)<keyword>([^"]+")/\1\2/g
-	s/("[^<]+)<\/keyword>([^"]+")/\1\2/g
+	s/("[^<]*)<keyword>([^"]+")/\1\2/g
+	s/("[^<]*)<\/keyword>([^"]+")/\1\2/g
 
 	# Check if there are any more keyword tags left in this part of the string literal
 	# if so, we branch back to removetags. We basically loop until this condition returns false.
-	/"[^"]+<keyword>[^"]+"/b qremovetags
+	/"[^"]*<keyword>[^"]+"/b qremovetags
 	
-	s/"([^"]*)"/"<text>\1<\/text>"/g
+	s/"([^"]+)"/"<text>\1<\/text>"/g
 }
 
 : end
