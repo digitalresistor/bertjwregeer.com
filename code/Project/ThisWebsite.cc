@@ -14,3 +14,14 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
 **/
+
+#include <iostream>
+#include <unistd.h>
+#include "includes/Project.h"
+
+int main () {
+
+	// Re-run the Projects application to let the visitor view more projects: 
+	execl("./Projects", "{Projects}[../Projects.html]", (char *)0);
+	return 0;
+}
