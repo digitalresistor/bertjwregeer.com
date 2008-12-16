@@ -19,9 +19,15 @@
 #include <unistd.h>
 
 int main () {
-        // Implement a Resume program!
+	std::cout << "Bert's Resume"		<< std::endl;
+	std::cout << 				   std::endl;
+	std::cout << "My resume is available in two formats: " << std::endl;
+	std::cout << 				   std::endl;
+	std::cout << "\t- {HTML}[./Resume/Resume.html]"			<< std::endl;
+	std::cout << "\t- {PDF}[./Resume/Resume.pdf]"			<< std::endl;
+	std::cout <<				   std::endl;
 
 	// Re-run the menu application to give the visitor more selections: 
 	execl("./Main", "{Main}[./index.html]", (char *)0);
-        return 0;
+	return 0;
 }

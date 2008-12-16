@@ -20,10 +20,10 @@
 
 int main () {
 	std::cout << "Welcome to Berts website" << std::endl;
-	std::cout << "\t1. {About_me}[./About_me.html]" << std::endl;
-	std::cout << "\t2. {Projects}[./Projects.html]" << std::endl;
-	std::cout << "\t3. {Resume}[./Resume.html]" << std::endl;
-	std::cout << "\t4. {Contact}[./Contact.html]" << std::endl;
+	std::cout << "\t0. {About_me}[./About_me.html]" << std::endl;
+	std::cout << "\t1. {Projects}[./Projects.html]" << std::endl;
+	std::cout << "\t2. {Resume}[./Resume.html]" << std::endl;
+	std::cout << "\t3. {Contact}[./Contact.html]" << std::endl;
 
 	int input;
 
@@ -32,10 +32,10 @@ int main () {
 
         // We assume that execl will not fail!
 	switch (input) {
-	        case 1: execl("./About_me", "{About_me}[./About_me.html]", (char *)0);
-	        case 2: execl("./Projects", "{Projects}[./Projects.html]", (char *)0); 
-	        case 3: execl("./Resume",   "{Resume}[./Resume.html]", (char *)0);
-	        case 4: execl("./Contact",  "{Contact}[./Contact.html]", (char *)0);
+	        case 0: execl("./About_me", "{About_me}[./About_me.html]", (char *)0);
+	        case 1: execl("./Projects", "{Projects}[./Projects.html]", (char *)0); 
+	        case 2: execl("./Resume",   "{Resume}[./Resume.html]", (char *)0);
+	        case 3: execl("./Contact",  "{Contact}[./Contact.html]", (char *)0);
 	        default:
                         std::cerr << "Bad selection" << std::endl;
                         return 1;

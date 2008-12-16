@@ -28,7 +28,7 @@ int main () {
 	std::cout << "Phone: "			<< std::endl;
 	std::cout << "\t1. +1-973-342-4882"	<< std::endl;
 	std::cout << 				   std::endl;
-	std::cout << "Google chat/Jabber: "	<< std::endl;
+	std::cout << "Google Chat/Jabber: "	<< std::endl;
 	std::cout << "\t1. bertjw@regeer.org"	<< std::endl;
 	std::cout << 				   std::endl;
 	std::cout << "Contact via email is preferred." << std::endl;

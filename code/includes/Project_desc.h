@@ -15,8 +15,8 @@
  *
 **/
 
-#ifndef _PROJECT_H_
-#define _PROJECT_H_
+#ifndef _PROJECT_DESC_H_
+#define _PROJECT_DESC_H_
 
 #include <iostream>
 #include <string>
@@ -25,20 +25,37 @@
 class Project_desc  {
 	public:
 		Project_desc (std::string * name, std::string * description) 
-			: _name(name), _description(description) { };
+			: _name(name), _description(description) {
+			// We have to clean up the name variable just a tiny bit ...
+			
+			/*
+			   We want just the substring, this is just because on the website we use {text here}[url here] for URL's
+			   we need to remove the first { and then }*. This accomplishes exactly that. If you copy and paste from
+			   the website this is basically a no-op.
+			*/
+			
+			if (_name->find_first_of("{") != std::string::npos && _name->find_last_of("}") != std::string::npos)
+				*_name = _name->substr(_name->find_first_of("{") + 1, 
+						       _name->find_last_of("}") - _name->find_first_of("{") - 1
+						      );
+		};
 			
 		~Project_desc () {
 			delete _name;
 			delete _description;
 		};
 		
+		const std::string project_name() {
+			return *_name;
+		}
+		
 		// Function to execute the binary when the user selects it
-		void viewFull() {
+		void view_full() {
 			char **argv = 0;
 			argv = new char*[3];
 			
 			// We first set the correct execute path
-			std::string execute = "./Projects/" + (*_name);
+			std::string execute = "./Project/" + (*_name);
 			argv[0] = new char[execute.length() + 1];
 			strcpy(argv[0], execute.c_str());
 			
@@ -81,6 +98,26 @@ class Project_list  {
 			    a!=b; a++) {
 				std::cout << *(*a) << std::endl;
 			}
+			
+			std::cout << "Which project would like more information about: " << std::endl;
+			int i = 0;
+			for(std::vector<Project_desc *>::iterator a = _Projects.begin(), b = _Projects.end(); 
+			    a!=b; a++) {
+				
+				std::cout << "\t" << i++ << ". " << (*a)->project_name() << std::endl;
+			}
+			
+			int input;
+
+			std::cout << "Enter your selection: " << std::flush;
+		        std::cin >> input;
+			try {
+				Project_desc * selected = (_Projects.at(input));
+				selected->view_full();
+			}
+			catch (std::exception e) {
+				std::cout << "Bad selection" << std::endl;
+			}
 		}
 
 	private:
@@ -93,5 +130,4 @@ std::ostream& operator<< (std::ostream& o, const Project_desc& project) {
 	return o;
 }
 
-#endif /* _PROJECT_H_ */
-
+#endif /* _PROJECT_DESC_H_ */
