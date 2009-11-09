@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+        <title>Bert JW Regeer -- NearSpace</title>
+        <link href="http://bertjwregeer.com/bjwr.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<pre><span class="comment">/**
+ * Copyright (c) 2008 <a href="http://bertjwregeer.com" alt="Bert JW Regeer">Bert JW Regeer</a>;
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
+**/</span>
+
+<span class="preproc">#include &lt;iostream&gt;</span>
+<span class="preproc">#include &lt;unistd.h&gt;</span>
+<span class="preproc">#include "<a href="./includes/Project.html" alt="includes/Project.h">includes/Project.h</a>"</span>
+
+<span class="keyword">int</span> main () {
+	Project * myProject = <span class="keyword">new</span> Project("<span class="text">Near Space</span>");
+	
+	myProject-&gt;heading(1, "<span class="text">Overview</span>");
+	myProject-&gt;paragraph("<span class="text">Near Space was both a project and an official class  at UAT (SCI388: Special topics in </span>"
+			     "<span class="text">science: Near Space). The class  consisted of 15 people that were picked by Ryan Clarke, </span>"
+			     "<span class="text">and upon passing an entrance exam put into three different groups; engineering, science </span>"
+			     "<span class="text">and logistics. The goal of the class  was to send a balloon to 90,000 ft and to </span>"
+			     "<span class="text">successfully recover the payload once the balloon burst. Our first launch Connery-1 went </span>"
+			     "<span class="text">off without any major issues, and we completed our goal. We reached 93,000 ft and </span>"
+			     "<span class="text">recovered the payload along with the data it had captured.</span>");
+	
+	myProject-&gt;heading(1, "<span class="text">Teams</span>");
+	myProject-&gt;heading(2, "<span class="text">Engineering</span>");
+	myProject-&gt;paragraph("<span class="text">The engineering teams primary focus was to create the payload box, along with the </span>"
+			     "<span class="text">structural support to hold all of the equipment in place. The engineering team was also </span>"
+			     "<span class="text">in charge of designing and building a way to fill the latex balloon, building the </span>"
+			     "<span class="text">flight computer, and radio. The engineering team also had to write the procedures for </span>"
+			     "<span class="text">the launch, and test the various parts of the systems to make sure that it would </span>"
+			     "<span class="text">survive the return trip from near space.</span>");
+	
+	myProject-&gt;heading(2, "<span class="text">Science</span>");
+	myProject-&gt;paragraph("<span class="text">The science teams primary focus was science experiments that were to be performed while </span>"
+			     "<span class="text">ascending and descending. The science team is also in charge of interpreting any data </span>"
+			     "<span class="text">that did come back down, and in general anything related to science.</span>");
+	
+	myProject-&gt;heading(2, "<span class="text">Logistics</span>");
+	myProject-&gt;paragraph("<span class="text">The logistics teams primary focus was ordering parts, and making sure they arrived on </span>"
+			     "<span class="text">time, they were also in charge of making sure we were following all federal regulations </span>"
+			     "<span class="text">and following the letter of the law. This team was also in charge of finding the </span>"
+			     "<span class="text">appropriate launch sites, and predicting where the near space payload would fall back to </span>"
+			     "<span class="text">earth so that we may recover it.</span>");
+			
+	myProject-&gt;heading(1, "<span class="text">Launches</span>");
+	myProject-&gt;heading(2, "<span class="text">CONNERY-1</span>");
+	myProject-&gt;paragraph("<span class="text">CONNERY-1 was the first near space balloon we launched, it had onboard a BASIC Stamp 2, </span>"
+			    "<span class="text">GPS, Radio, a photo-camera, and a video camera. We launched at 0640 mountain standard </span>"
+			    "<span class="text">time, and retrieved the payload a few hours later. We hit an altitude of 92,999 ft. It </span>"
+			    "<span class="text">was a huge success, and we were extremely happy. The pictures the payload took were </span>"
+			    "<span class="text">absolutely stunning, and awe inspiring. We tracked the balloon using the APRS network.</span>");
+	
+	myProject-&gt;heading(2, "<span class="text">CONNERY-2</span>");
+	myProject-&gt;paragraph("<span class="text">CONNERY-2 was a huge success, we launched our second balloon with some modifications, </span>"
+			     "<span class="text">we decided to take more pictures more often, and we also modified the flight computer </span>"
+			     "<span class="text">to log more GPS strings. We also launched right before sunset so we were able to </span>"
+			     "<span class="text">capture many more awesome pictures. The balloon was once again tracked using radio </span>"
+			     "<span class="text">signals sent to the national APRS frequency.</span>");
+			
+	myProject-&gt;heading(1, "<span class="text">Data logging and parsing</span>");
+	myProject-&gt;paragraph("<span class="text">The Near Space payload consisted of a data logger that was logging data to an SD card </span>"
+			     "<span class="text">a format that we well defined. When the data came back down to earth we needed a way </span>"
+			     "<span class="text">to parse the data so that we could graph it using Excel and or other tools. I wrote </span>"
+			     "<span class="text">a simple parser that parses the different format versions that we already have by </span>"
+			     "<span class="text">automatically detecting in what format the file is. It then parses the data and outputs </span>"
+			     "<span class="text">a comma separated file (csv).\n\n</span>"
+			     "<span class="text"><a href="http://nearspace.0x58.com/launches/Tools/ParseFCU.html" alt="View code">View code</a> / <a href="http://nearspace.0x58.com/launches/Tools/ParseFCU.cc" alt="Download code">Download code</a></span>");
+
+	myProject-&gt;heading(1, "<span class="text">Documentation</span>");
+	myProject-&gt;paragraph("<span class="text">For the project we decided from the start that we needed a good place to store </span>"
+			     "<span class="text">information that would be accessible by the outside world, as well as to anyone that </span>"
+			     "<span class="text">wanted to provide their insight. We also wanted to provide a way for people to track </span>"
+			     "<span class="text">our progress and to find out more information about the project. We set up a <a href="http://nearspace.0x58.com/" alt="near">near</a> </span>"
+			     "<span class="text"><a href="http://nearspace.0x58.com/" alt="space wiki">space wiki</a>, which contains most of the information about the project. Unfortunately </span>"
+			     "<span class="text">not everyone that was on the project has wiki knowledge so documentation is </span>"
+			     "<span class="text">unfortunately lacking somewhat.</span>");
+	
+	myProject-&gt;heading(1, "<span class="text">Future</span>");
+	myProject-&gt;paragraph("<span class="text">It is our hope as a team that UAT will continue to do near space balloon launches, </span>"
+			     "<span class="text">gathering more pictures in the process, along with various science experiments. </span>"
+			     "<span class="text">There is just something to being able to say that you were part of a team that </span>"
+			     "<span class="text">helped launch a balloon to 93,000 ft.</span>");
+
+	<span class="comment">// Output the project!</span>
+	std::cout &lt;&lt; *myProject &lt;&lt; std::flush;
+	
+	<span class="comment">// Wait on user input before we blindly proceed ahead</span>
+	std::cout &lt;&lt; "<span class="text">Press any key to return back to the Projects menu ...</span>";
+	std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(), '\n');
+	<span class="comment">// Re-run the Projects application to let the visitor view more projects: </span>
+	execl("<span class="text">./Projects</span>", "<span class="text"><a href="../Projects.html" alt="Projects">Projects</a></span>", (<span class="keyword">char</span> *)0);
+	<span class="keyword">return</span> 0;
+}
+</pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-97351-8");
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

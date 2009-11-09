@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+        <title>Bert JW Regeer -- ChristmasTree</title>
+        <link href="http://bertjwregeer.com/bjwr.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<pre><span class="comment">/**
+ * Copyright (c) 2008 <a href="http://bertjwregeer.com" alt="Bert JW Regeer">Bert JW Regeer</a>;
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
+**/</span>
+
+<span class="preproc">#include &lt;iostream&gt;</span>
+<span class="preproc">#include &lt;unistd.h&gt;</span>
+<span class="preproc">#include "<a href="./includes/Project.html" alt="includes/Project.h">includes/Project.h</a>"</span>
+
+<span class="keyword">int</span> main () {
+	Project * myProject = <span class="keyword">new</span> Project("<span class="text">Christmas Tree</span>");
+	
+	myProject-&gt;heading(1, "<span class="text">Overview</span>");
+	myProject-&gt;paragraph("<span class="text">A team of students that are collectively known as the 244'ers by the room number they </span>"
+			     "<span class="text">hang out in came together and modified the Christmas Tree that <a href="http://uat.edu/" alt="UAT">UAT</a> had placed in the </span>"
+			     "<span class="text">commons area at UAT. We provided an online URL where people could go and turn the tree </span>"
+			     "<span class="text">on and off or scroll the tree from top to bottom.</span>");
+			
+	myProject-&gt;heading(1, "<span class="text">Hardware</span>");
+	myProject-&gt;paragraph("<span class="text">The hardware we used was simple. The tree was purchased and put up by UAT. This was a </span>"
+			     "<span class="text">classic fake Christmas tree you would find at any major retailer during the Christmas </span>"
+			     "<span class="text">season. This mean that it was built in layers, and each layer had it's own ring of </span>"
+			     "<span class="text">lights, these were all daisy chained together using standard wall plugs. We went in and </span>"
+			     "<span class="text">just put in extension cords for each of the different layers, so that now each layer </span>"
+			     "<span class="text">instead of being daisy chained to the previous was now on its own separate extension cord.</span>");
+			
+	myProject-&gt;paragraph("<span class="text">Professor Clarke had a ready built box which contained standard solid state relays. This </span>"
+			     "<span class="text">meant that we could safely using a micro controller switch on and off 120 volt AC power. </span>"
+			     "<span class="text">This was built into one of the standard blue boxes also used in the construction for </span>"
+			     "<span class="text">housing, with the only thing being exposed being six wall plugs on the front face, each </span>"
+			     "<span class="text">of which could be individually turned on and off.</span>");
+			
+	myProject-&gt;paragraph("<span class="text">As a micro controller we used the BASIC Stamp, mainly for its ease of programming, and the </span>"
+			     "<span class="text">fact that we had assumed it would be adequate for the job. Along with that we used a PINK </span>"
+			     "<span class="text">(Parallax Internet Netburner Kit) which gave us a small embedded web server. The PINK is </span>"
+			     "<span class="text">able to communicate over a serial connection to report certain form changes.</span>");
+			
+	myProject-&gt;paragraph("<span class="text">In the end the following hardware was used:\n</span>"
+			     "<span class="text">- <a href="http://www.parallax.com/tabid/295/Default.aspx" alt="BASIC Stamp Controller">BASIC Stamp Controller</a>\n</span>"
+			     "<span class="text">- <a href="http://www.parallax.com/Store/Accessories/Communication/tabid/161/ProductID/40/CategoryID/36/List/0/Level/a/Default.aspx?SortField=ProductName,ProductName" alt="PINK (Parallax Internet Netburner Kit)">PINK (Parallax Internet Netburner Kit)</a>\n</span>"
+			     "<span class="text">- <a href="http://efx-tek.com/topics/crydom.html" alt="6 solid state relays">6 solid state relays</a>\n</span>"
+			     "<span class="text">- Extension cords\n</span>"
+			     "<span class="text">- One unsuspecting tree</span>");
+	
+	myProject-&gt;heading(2, "<span class="text">Simple Website</span>");
+	myProject-&gt;paragraph("<span class="text">The PINK has a minimal amount of storage on-board which allows you to put small web pages </span>"
+			     "<span class="text">on it. I ended up creating a quick and dirty small website that allowed the viewer to see </span>"
+			     "<span class="text">what state the tree was currently in, and since we had two web cameras on campus, I </span>"
+			     "<span class="text">embedded those on the web site as well so that the viewer would be able to see in real </span>"
+			     "<span class="text">time what their changes had done to the Christmas tree.</span>");
+	
+	myProject-&gt;heading(1, "<span class="text">Hack was Hacked</span>");
+	myProject-&gt;paragraph("<span class="text">Since the website was set up with a small form that allowed the browser to POST to the web </span>"
+			     "<span class="text">server, it was rather simple to automate the turning on and off of the Christmas tree. We </span>"
+			     "<span class="text">had clever people that were sending us messages over the tree by turning it on and off in </span>"
+			     "<span class="text">morse code patterns, as well as just trying to turn it on and off as fast as they were able </span>"
+			     "<span class="text">to send data to it (which annoyed other users, c'est la vie!). The best hack was when </span>"
+			     "<span class="text">someone flashed S.O.S. on the tree. It was a simple hack, but the one that stood out the </span>"
+			     "<span class="text">most to me!</span>");
+			
+	myProject-&gt;heading(1, "<span class="text">Aftermath</span>");
+	myProject-&gt;paragraph("<span class="text">This was my very first project when I joined UAT, and it was done just to drum up interest </span>"
+	                     "<span class="text">and to do something interesting for the campus as a whole. I had stuck the Google Analytics </span>"
+	                     "<span class="text">code on the web pages, so we had a way to find out how many people visited the tree, the </span>"
+	                     "<span class="text">stats are as follows:\n</span>"
+			     "<span class="text">- Average: 4.76 Pages/Visitor\n</span>"
+			     "<span class="text">- Unique Visits: 4,323\n</span>"
+			     "<span class="text">- Pageviews: 20,577</span>");
+
+	<span class="comment">// Output the project!</span>
+	std::cout &lt;&lt; *myProject &lt;&lt; std::flush;
+	
+	<span class="comment">// Wait on user input before we blindly proceed ahead</span>
+	std::cout &lt;&lt; "<span class="text">Press any key to return back to the Projects menu ...</span>";
+	std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(), '\n');
+	<span class="comment">// Re-run the Projects application to let the visitor view more projects: </span>
+	execl("<span class="text">./Projects</span>", "<span class="text"><a href="../Projects.html" alt="Projects">Projects</a></span>", (<span class="keyword">char</span> *)0);
+	<span class="keyword">return</span> 0;
+}
+</pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-97351-8");
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+        <title>Bert JW Regeer -- Project</title>
+        <link href="http://bertjwregeer.com/bjwr.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<pre><span class="comment">/**
+ * Copyright (c) 2008 <a href="http://bertjwregeer.com" alt="Bert JW Regeer">Bert JW Regeer</a>;
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
+**/</span>
+
+<span class="preproc">#ifndef _PROJECT_H_</span>
+<span class="preproc">#define _PROJECT_H_</span>
+
+<span class="preproc">#include &lt;iostream&gt;</span>
+<span class="preproc">#include &lt;string&gt;</span>
+<span class="preproc">#include &lt;vector&gt;</span>
+
+enum Type { Heading, Paragraph };
+
+<span class="keyword">typedef</span> <span class="keyword">struct</span> value_container {
+	Type		curType;
+	<span class="keyword">int</span>		level;
+	std::string * 	text;
+} paper_body;
+
+<span class="keyword">class </span> Project  {
+	<span class="keyword">public:</span>
+		Project (std::string name) : _name(name) {
+			<span class="comment">// We want the first thing to be the name of the project!</span>
+			heading(0, _name);
+		}
+		~Project () {
+		}
+		
+		void paragraph(std::string text) {
+			std::string * _text = <span class="keyword">new</span> std::string(text);
+			paper_body * _paragraph = <span class="keyword">new</span> paper_body;
+			
+			_paragraph-&gt;curType = Paragraph;
+			_paragraph-&gt;level   = 0;
+			_paragraph-&gt;text    = _text;
+			
+			_project.push_back(_paragraph);
+		}
+		
+		void heading(<span class="keyword">int</span> level, std::string text) {
+			std::string * _text = <span class="keyword">new</span> std::string(text);
+			paper_body * _heading = <span class="keyword">new</span> paper_body;
+			
+			_heading-&gt;curType   = Heading;
+			_heading-&gt;level     = level;
+			_heading-&gt;text      = _text;
+			
+			_project.push_back(_heading);
+		}
+		
+		<span class="keyword">friend</span> std::ostream& operator&lt;&lt; (std::ostream& o, Project& project);
+		
+	<span class="keyword">private:</span>
+		std::string _name;
+		std::vector&lt;paper_body *&gt; _project;
+};
+
+std::ostream& operator&lt;&lt; (std::ostream& o, Project& project) {
+	for(std::vector&lt;paper_body *&gt;::iterator a = project._project.begin(), b = project._project.end(); 
+	    a!=b; a++) {
+		paper_body * body;
+		body = (*a);
+		
+		if (body-&gt;curType == Heading) {
+			for (<span class="keyword">int</span> i = -1; i &lt; body-&gt;level; i++) {
+				o &lt;&lt; "<span class="text">=</span>";
+			}
+			
+			o &lt;&lt; "<span class="text"> </span>" &lt;&lt; *(body-&gt;text) &lt;&lt; "<span class="text"> </span>";
+			
+			for (<span class="keyword">int</span> i = -1; i &lt; body-&gt;level; i++) {
+				std::cout &lt;&lt; "<span class="text">=</span>";
+			}
+			
+			o &lt;&lt; std::endl &lt;&lt; std::endl;
+		}
+		else {
+			o &lt;&lt; *(body-&gt;text) &lt;&lt; std::endl &lt;&lt; std::endl;
+		}
+	}
+	<span class="keyword">return</span> o;
+}
+
+<span class="preproc">#endif /* _PROJECT_H_ */</span>
+</pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-97351-8");
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

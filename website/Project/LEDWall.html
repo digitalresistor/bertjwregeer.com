@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+        <title>Bert JW Regeer -- LEDWall</title>
+        <link href="http://bertjwregeer.com/bjwr.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<pre><span class="comment">/**
+ * Copyright (c) 2008 <a href="http://bertjwregeer.com" alt="Bert JW Regeer">Bert JW Regeer</a>;
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
+**/</span>
+
+<span class="preproc">#include &lt;iostream&gt;</span>
+<span class="preproc">#include &lt;unistd.h&gt;</span>
+<span class="preproc">#include "<a href="./includes/Project.html" alt="includes/Project.h">includes/Project.h</a>"</span>
+
+<span class="keyword">int</span> main () {
+	Project * myProject = <span class="keyword">new</span> Project("<span class="text">LED Whiteboard</span>");
+	
+	myProject-&gt;heading(1, "<span class="text">Concept</span>");
+	myProject-&gt;paragraph("<span class="text">UAT wanted to provide a location for UAT students to show off their art skills, to </span>"
+			     "<span class="text">write down project ideas and to provide a board for poetry and various other literary </span>"
+			     "<span class="text">works. The idea was to create a backlit whiteboard. The idea was kicked around UAT </span>"
+			     "<span class="text">until it reached Professor Clarke, who then suggested that instead of just backlighting </span>"
+			     "<span class="text">the board, the board should have LED's that can be individually controlled to be on or </span>"
+			     "<span class="text">off. We ended up using an 8 by 26 array of blue LED's spaced 6 inches apart, on a 4 feet </span>"
+			     "<span class="text">by 28 feet wall.</span>");
+
+	myProject-&gt;heading(1, "<span class="text">Construction</span>");
+	myProject-&gt;paragraph("<span class="text">The 'wall' is made out of two separate layers. The top most layer is diffused acrylic, </span>"
+			     "<span class="text">which helps diffuse the light. The second layer underneath that is thick sheet of </span>"
+			     "<span class="text">plastic with holes drilled 6 inches apart. This allowed us to put the LED into the hole </span>"
+			     "<span class="text">and glue it down. From there we ran wires between the different LED's to provide one </span>"
+			     "<span class="text">common ground per column, and we ran a common anode per row. This allows us to turn on </span>"
+			     "<span class="text">a single LED by grounding a column and providing a current to a row.</span>");
+	
+	myProject-&gt;heading(1, "<span class="text">Hardware</span>");
+	myProject-&gt;paragraph("<span class="text">The LED wall is being run off a standard Parallax SX28, some transistors for the rows </span>"
+			     "<span class="text">since they had to provide a massive amount of power, and two MAX6979 to sink the columns. </span>"
+			     "<span class="text">Currently the project is still sitting on a breadboard as we have not yet had the time to </span>"
+			     "<span class="text">print a custom board, nor has it been necessary.</span>");
+	
+	myProject-&gt;paragraph("<span class="text">Since the MAX6979's are shift registers. Shift registers allows us to clock data into </span>"
+			     "<span class="text">the chip at whatever speed we desire. It is an extremely simple serial communication </span>"
+			     "<span class="text">protocol. So we only have to provide a CLK signal, a DIN for data in, a LE which is a </span>"
+			     "<span class="text">latch enable, and OE which is the output enable. Since it is a shift register and they </span>"
+			     "<span class="text">can be daisy chained, we can control all of the columns using just 4 control lines from </span>"
+			     "<span class="text">the SX28.</span>");
+
+	myProject-&gt;paragraph("<span class="text">For the control of the rows we used a demux, this way we only had to use 4 control lines </span>"
+			     "<span class="text">on the SX28. It sends a binary coded decimal to the demux to select which row we would </span>"
+			     "<span class="text">like to provide power on.</span>");
+			
+	myProject-&gt;paragraph("<span class="text">In total we used just 8 control lines on the SX28 leaving the rest of them wide open for </span>"
+			     "<span class="text">future add-ons.</span>");
+			
+	myProject-&gt;paragraph("<span class="text">The following hardware was used:\n\n</span>"
+			     "<span class="text"> - Parallax SX28\n</span>"
+		 	     "<span class="text"> - demux\n</span>"
+			     "<span class="text"> - Transistors\n</span>"
+			     "<span class="text"> - MAX6979\n</span>"
+			     "<span class="text">Along with plenty of LED's!</span>");
+			
+	myProject-&gt;heading(1, "<span class="text">Future</span>");
+	myProject-&gt;paragraph("<span class="text">Currently it is running Conway's game of life, and the board provides its function but </span>"
+			     "<span class="text">at the same time it does not allow the students to interact with it in a new and novel </span>"
+			     "<span class="text">way. The original idea that was presented was a serial port that was on the outside that </span>"
+			     "<span class="text">then allowed students to walk up to it and program the LED's to flash various different </span>"
+			     "<span class="text">shapes/patterns/pieces of art.</span>");
+
+	<span class="comment">// Output the project!</span>
+	std::cout &lt;&lt; *myProject &lt;&lt; std::flush;
+	
+	<span class="comment">// Wait on user input before we blindly proceed ahead</span>
+	std::cout &lt;&lt; "<span class="text">Press any key to return back to the Projects menu ...</span>";
+	std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(), '\n');
+	<span class="comment">// Re-run the Projects application to let the visitor view more projects: </span>
+	execl("<span class="text">./Projects</span>", "<span class="text"><a href="../Projects.html" alt="Projects">Projects</a></span>", (<span class="keyword">char</span> *)0);
+	<span class="keyword">return</span> 0;
+}
+</pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-97351-8");
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

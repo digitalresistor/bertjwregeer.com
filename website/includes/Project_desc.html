@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+        <title>Bert JW Regeer -- Project_desc</title>
+        <link href="http://bertjwregeer.com/bjwr.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<pre><span class="comment">/**
+ * Copyright (c) 2008 <a href="http://bertjwregeer.com" alt="Bert JW Regeer">Bert JW Regeer</a>;
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
+**/</span>
+
+<span class="preproc">#ifndef _PROJECT_DESC_H_</span>
+<span class="preproc">#define _PROJECT_DESC_H_</span>
+
+<span class="preproc">#include &lt;iostream&gt;</span>
+<span class="preproc">#include &lt;string&gt;</span>
+<span class="preproc">#include &lt;vector&gt;</span>
+
+<span class="keyword">class </span> Project_desc  {
+	<span class="keyword">public:</span>
+		Project_desc (std::string * name, std::string * description) 
+			: _name(name), _description(description) {
+			<span class="comment">// We have to clean up the name variable just a tiny bit ...</span>
+			
+			<span class="comment">/*
+			   We want just the substring, this is just because on the website we use <a href="url here" alt="text here">text here</a> for URL's
+			   we need to remove the first { and then }*. This accomplishes exactly that. If you copy and paste from
+			   the website this is basically a no-op.
+			*/</span>
+			
+			if (_name-&gt;find_first_of("<span class="text">{</span>") != std::string::npos && _name-&gt;find_last_of("<span class="text">}</span>") != std::string::npos)
+				*_name = _name-&gt;substr(_name-&gt;find_first_of("<span class="text">{</span>") + 1, 
+						       _name-&gt;find_last_of("<span class="text">}</span>") - _name-&gt;find_first_of("<span class="text">{</span>") - 1
+						      );
+		};
+			
+		~Project_desc () {
+			<span class="keyword">delete</span> _name;
+			<span class="keyword">delete</span> _description;
+		};
+		
+		<span class="keyword">const</span> std::string project_name() {
+			<span class="keyword">return</span> *_name;
+		}
+		
+		<span class="comment">// Function to execute the binary when the user selects it</span>
+		void view_full() {
+			<span class="keyword">char</span> **argv = 0;
+			argv = <span class="keyword">new</span> <span class="keyword">char</span>*[3];
+			
+			<span class="comment">// We first set the correct execute path</span>
+			std::string execute = "<span class="text">./Project/</span>" + (*_name);
+			argv[0] = <span class="keyword">new</span> <span class="keyword">char</span>[execute.length() + 1];
+			strcpy(argv[0], execute.c_str());
+			
+			<span class="comment">// We copy just the name of the program to argv[1], </span>
+			<span class="comment">// so that it is accessible to the program as arg0</span>
+			argv[1] = <span class="keyword">new</span> <span class="keyword">char</span>[_name-&gt;length() + 1];
+			strcpy(argv[1], _name-&gt;c_str());
+			
+			<span class="comment">// It has to end with a null pointer</span>
+			argv[2] = static_cast&lt;<span class="keyword">char</span> *&gt; (0);
+			
+			<span class="comment">// Execute the program. We assume it won't fail</span>
+			execv(argv[0], argv + 1);
+		}
+	
+		<span class="keyword">friend</span> std::ostream& operator&lt;&lt; (std::ostream& o, <span class="keyword">const</span> Project_desc& project);
+		
+	<span class="keyword">private:</span>
+		std::string * _name;
+		std::string * _description;
+		
+};
+
+<span class="keyword">class </span> Project_list  {
+	<span class="keyword">public:</span>
+		Project_list () {};
+		~Project_list () {
+			
+		};
+		
+		void add_project(Project_desc * project) {
+			<span class="comment">// We assume that this will not fail, for the sake of simplicity</span>
+			_Projects.push_back(project);
+		}
+		
+		void list_projects() {
+			<span class="comment">// TODO: Write code to actually list the projects, and then give</span>
+			<span class="comment">// the user a way to select which one they want to view.</span>
+			for(std::vector&lt;Project_desc *&gt;::iterator a = _Projects.begin(), b = _Projects.end(); 
+			    a!=b; a++) {
+				std::cout &lt;&lt; *(*a) &lt;&lt; std::endl;
+			}
+			
+			std::cout &lt;&lt; "<span class="text">Which project would like more information about: </span>" &lt;&lt; std::endl;
+			<span class="keyword">int</span> i = 0;
+			for(std::vector&lt;Project_desc *&gt;::iterator a = _Projects.begin(), b = _Projects.end(); 
+			    a!=b; a++) {
+				
+				std::cout &lt;&lt; "<span class="text">\t</span>" &lt;&lt; i++ &lt;&lt; "<span class="text">. </span>" &lt;&lt; (*a)-&gt;project_name() &lt;&lt; std::endl;
+			}
+			
+			<span class="keyword">int</span> input;
+
+			std::cout &lt;&lt; "<span class="text">Enter your selection: </span>" &lt;&lt; std::flush;
+		        std::cin &gt;&gt; input;
+			try {
+				Project_desc * selected = (_Projects.at(input));
+				selected-&gt;view_full();
+			}
+			catch (std::exception e) {
+				std::cout &lt;&lt; "<span class="text">Bad selection</span>" &lt;&lt; std::endl;
+			}
+		}
+
+	<span class="keyword">private:</span>
+		std::vector&lt;Project_desc *&gt; _Projects;
+};
+
+std::ostream& operator&lt;&lt; (std::ostream& o, <span class="keyword">const</span> Project_desc& project) {
+	o &lt;&lt; "<span class="text">Name: </span>" &lt;&lt; *project._name &lt;&lt; std::endl;
+	o &lt;&lt; "<span class="text">Description: </span>" &lt;&lt; std::endl &lt;&lt; "<span class="text">\t</span>" &lt;&lt; *project._description &lt;&lt; std::endl;
+	<span class="keyword">return</span> o;
+}
+
+<span class="preproc">#endif /* _PROJECT_DESC_H_ */</span>
+</pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-97351-8");
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

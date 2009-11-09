@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+        <title>Bert JW Regeer -- Person</title>
+        <link href="http://bertjwregeer.com/bjwr.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<pre><span class="comment">/**
+ * Copyright (c) 2008 <a href="http://bertjwregeer.com" alt="Bert JW Regeer">Bert JW Regeer</a>;
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
+**/</span>
+
+<span class="preproc">#ifndef _PERSON_H_</span>
+<span class="preproc">#define _PERSON_H_</span>
+
+<span class="preproc">#include &lt;iostream&gt;</span>
+<span class="preproc">#include &lt;string&gt;</span>
+
+<span class="keyword">typedef</span> <span class="keyword">struct</span> education_container
+{
+	std::string schoolname;
+	std::string degree;
+	std::string major;
+} Education;
+
+<span class="keyword">class </span> Person  {
+	<span class="keyword">public:</span>
+		Person (std::string * name, std::string * biography, Education * education) 
+			: _name(name), _biography(biography), _education(education) { };
+
+		~Person () {
+			<span class="keyword">delete</span> _name;
+			<span class="keyword">delete</span> _biography;
+			<span class="keyword">delete</span> _education;
+		};
+
+		<span class="keyword">friend</span> std::ostream& operator&lt;&lt; (std::ostream& o, <span class="keyword">const</span> Person& person);
+
+	<span class="keyword">private:</span>
+		std::string * _name;
+		std::string * _biography;
+		Education   * _education;
+};
+
+std::ostream& operator&lt;&lt; (std::ostream& o, <span class="keyword">const</span> Person& person) {
+	o &lt;&lt; "<span class="text">Name: </span>"      &lt;&lt; *(person._name) &lt;&lt; std::endl;
+	o &lt;&lt; "<span class="text">Biography: </span>" &lt;&lt; std::endl &lt;&lt; *(person._biography) &lt;&lt; std::endl;
+	o &lt;&lt; "<span class="text">Education: </span>" &lt;&lt; std::endl;
+	o &lt;&lt; "<span class="text">\tSchool: </span>"  &lt;&lt; (*(person._education)).schoolname &lt;&lt; std::endl;
+	o &lt;&lt; "<span class="text">\tDegree: </span>"  &lt;&lt; (*(person._education)).degree &lt;&lt; std::endl;
+	o &lt;&lt; "<span class="text">\tMajor: </span>"   &lt;&lt; (*(person._education)).major &lt;&lt; std::endl;
+
+	<span class="keyword">return</span> o;
+}
+
+<span class="preproc">#endif /* _PERSON_H_ */</span>
+</pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-97351-8");
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

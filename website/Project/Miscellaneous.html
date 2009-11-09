@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+        <title>Bert JW Regeer -- Miscellaneous</title>
+        <link href="http://bertjwregeer.com/bjwr.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<pre><span class="comment">/**
+ * Copyright (c) 2008 <a href="http://bertjwregeer.com" alt="Bert JW Regeer">Bert JW Regeer</a>;
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
+**/</span>
+
+<span class="preproc">#include &lt;iostream&gt;</span>
+<span class="preproc">#include &lt;unistd.h&gt;</span>
+<span class="preproc">#include "<a href="./includes/Project.html" alt="includes/Project.h">includes/Project.h</a>"</span>
+
+<span class="keyword">int</span> main () {
+	Project * myProject = <span class="keyword">new</span> Project("<span class="text">Miscellaneous Projects and Code</span>");
+	
+	myProject-&gt;paragraph("<span class="text">This page is dedicated to the small pieces of code that I have written over the years </span>"
+			     "<span class="text">along with a description of what it is about. Please be aware that some of the projects </span>"
+			     "<span class="text">here are still on-going and some of it was just not big enough to have its own project </span>"
+			     "<span class="text">page.</span>");
+	
+	myProject-&gt;heading(1, "<span class="text">Completed</span>");
+	
+	myProject-&gt;heading(2, "<span class="text">SX28 Assembly Boe-Bot</span>");
+	myProject-&gt;paragraph("<span class="text">The Boe-Bot from Parallax is a BASIC Stamp device, it is a robot that can be programmed </span>"
+			     "<span class="text">using the PBASIC programming language. For one of our classes we were required to write </span>"
+			     "<span class="text">a simple Boe-Bot like program in assembly which used whiskers and light sensors to do </span>"
+			     "<span class="text">obstacle avoidance.\n\n</span>"
+			     "<span class="text"><a href="./code/boebot.src" alt="Download code">Download code</a></span>");
+			
+	myProject-&gt;heading(2, "<span class="text">Intel Assembly</span>");
+	myProject-&gt;paragraph("<span class="text">UAT was offering a course in Intel assembly, and for the class  we had to write our </span>"
+			     "<span class="text">programs in a mixture of both C and inline assembly. However the instructor also was </span>"
+			     "<span class="text">willing to let us write the programs in pure Intel assembly. At the time I really wanted </span>"
+			     "<span class="text">to learn about Intel assembly and thus downloaded and compiled nasm for FreeBSD and </span>"
+			     "<span class="text">learned how to interact with the kernel (to write messages to stdout) how the stack was </span>"
+			     "<span class="text">created, how function calls interacted with each other.</span>");
+	
+	myProject-&gt;heading(3, "<span class="text">addnumbers.asm</span>");
+	myProject-&gt;paragraph("<span class="text">Using the knowledge I created a program that is capable of adding two numbers together </span>"
+			     "<span class="text">if they are passed as the first and second argument. This code still has the unfortunate </span>"
+			     "<span class="text">side effect, that as soon as the numbers add up to anything bigger than the default </span>"
+			     "<span class="text">integer size (4 bytes, 32 bits) it will give a wrong answer.\n\n</span>"
+			     "<span class="text"><a href="./code/addnumbers.asm" alt="Download code">Download code</a></span>");
+	
+	myProject-&gt;heading(3, "<span class="text">hex2binary.asm</span>");
+	myProject-&gt;paragraph("<span class="text">The class  was also required to write a piece of code that converted a two's compliment </span>"
+			     "<span class="text">hex value to binary. This was also an interesting challenge, and I found that when I </span>"
+			     "<span class="text">allocated memory in the .bss of the program, depending on how the OS laid out the stack </span>"
+			     "<span class="text">in memory the input of the program could be much bigger than it was originally intended </span>"
+			     "<span class="text">to be.\n\n</span>"
+			     "<span class="text"><a href="./code/converthextobinary.asm" alt="Download code">Download code</a></span>");
+			
+	myProject-&gt;heading(1, "<span class="text">Still Going</span>");
+	myProject-&gt;paragraph("<span class="text">These are the smaller projects that are still going on at the moment and that are not yet</span>"
+			     "<span class="text">completed. Please be aware of this when taking a look, the code will be rough around the </span>"
+			     "<span class="text">edges.</span>");
+			
+	myProject-&gt;heading(2, "<span class="text">bsdPanel</span>");
+	myProject-&gt;paragraph("<span class="text">bsdPanel is a personal project I started in 2003. The idea was to write a daemon back-end </span>"
+			     "<span class="text">with authentication that would allow any frontend that spoke a certain protocol to connect </span>"
+			     "<span class="text">and manage the server. For example, creating new user accounts, adding email accounts and </span>"
+			     "<span class="text">creating new FTP users. The thought behind it was that since the interface was abstracted </span>"
+			     "<span class="text">away the administrator would be able to pick and choose the various pieces of software and </span>"
+			     "<span class="text">interchange them without having to re-write the scripts to manage the software as bsdPanel's </span>"
+			     "<span class="text">daemon would do this for him.</span>");
+			
+	myProject-&gt;paragraph("<span class="text">The project is not dead, however progress has been very slow. The most active part of the </span>"
+			     "<span class="text">project right now is the 0x58-unix part which is going to be a C++ wrapper around the </span>"
+			     "<span class="text">various system calls that exist.\n\n</span>"
+			     "<span class="text"><a href="http://trac.svn.0x58.com/bsdpanel/" alt="Project homepage">Project homepage</a></span>");
+
+	<span class="comment">// Output the project!</span>
+	std::cout &lt;&lt; *myProject &lt;&lt; std::flush;
+	
+	<span class="comment">// Wait on user input before we blindly proceed ahead</span>
+	std::cout &lt;&lt; "<span class="text">Press any key to return back to the Projects menu ...</span>";
+	std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(), '\n');
+	<span class="comment">// Re-run the Projects application to let the visitor view more projects: </span>
+	execl("<span class="text">./Projects</span>", "<span class="text"><a href="../Projects.html" alt="Projects">Projects</a></span>", (<span class="keyword">char</span> *)0);
+	<span class="keyword">return</span> 0;
+}
+</pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-97351-8");
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

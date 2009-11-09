@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+        <title>Bert JW Regeer -- About_me</title>
+        <link href="http://bertjwregeer.com/bjwr.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<pre><span class="comment">/**
+ * Copyright (c) 2008 <a href="http://bertjwregeer.com" alt="Bert JW Regeer">Bert JW Regeer</a>;
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
+**/</span>
+
+<span class="preproc">#include &lt;iostream&gt;</span>
+<span class="preproc">#include &lt;unistd.h&gt;</span>
+<span class="preproc">#include "<a href="./includes/Person.html" alt="includes/Person.h">includes/Person.h</a>"</span>
+
+<span class="keyword">int</span> main () {
+	std::string * name, * biography;
+	Education * education;
+	Person * Bert;
+
+	name = <span class="keyword">new</span> std::string("<span class="text">Bert JW Regeer</span>");
+	biography = <span class="keyword">new</span> std::string(
+		"<span class="text">I am a current student at the <a href="http://uat.edu" alt="University of Advancing Technology">University of Advancing Technology</a> studying software engineering. I am </span>"
+		"<span class="text">currently nearing completion of my degree with only two more semesters left at UAT.\r\n</span>"
+		
+		"<span class="text">I am a highly motivated individual, who enjoys working with technology. My strongest points are my </span>"
+		"<span class="text">expertise in UNIX/Linux server administration and programming for those platforms. I enjoy working </span>"
+		"<span class="text">with open source software and writing my own software. I am currently part of several <a href="./Projects.html" alt="projects">projects</a> at </span>"
+		"<span class="text">UAT and I am also working on several of my own projects.\r\n</span>"
+		
+		"<span class="text">I participate in various clubs and groups around school and am active in the Network Security </span>"
+		"<span class="text">scene, having gone to both Black Hat and DefCon. I also enjoy going to the lesser known Net sec </span>"
+		"<span class="text">groups. HATS is local to UAT, and ToorCon which is held in San Diego.\r\n</span>"
+		
+		"<span class="text">I am from the Netherlands, and as such bring a unique perspective to any team. Having lived in and </span>"
+		"<span class="text">travelled to many countries I am very open to new cultures and ideas. I have resided in the US for </span>"
+		"<span class="text">the last 8 years, and  during that time have met many extra-ordinary and awesome people that I have </span>"
+		"<span class="text">had the pleasure of working with.</span>"
+		);
+
+	education = <span class="keyword">new</span> Education;
+	education-&gt;schoolname = "<span class="text"><a href="http://uat.edu" alt="University of Advancing Technology">University of Advancing Technology</a></span>";
+	education-&gt;degree     = "<span class="text">Bachelor of Science: Software Engineering</span>";
+	education-&gt;major      = "<span class="text">Programming</span>";
+
+	Bert = <span class="keyword">new</span> Person(name, biography, education);
+
+	<span class="comment">// Print the results to the screen</span>
+	std::cout &lt;&lt; (*Bert) &lt;&lt; std::endl &lt;&lt; std::flush;
+
+	<span class="comment">// Re-run the menu application to give the visitor more selections: </span>
+	execl("<span class="text">./Main</span>", "<span class="text"><a href="./index.html" alt="Main">Main</a></span>", (<span class="keyword">char</span> *)0);
+	<span class="keyword">return</span> 0;
+}
+</pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-97351-8");
+pageTracker._trackPageview();
+</script>
+</body>
+</html>
