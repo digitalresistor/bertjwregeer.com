@@ -1,0 +1,43 @@
+Name: Bert JW Regeer
+Course: PRO480
+Semester: Spring 2009
+Section: Unknown
+Expected Graduation Date: August, 2009
+Degree: Bachelors in Software Engineering
+Major: Computer Programming
+
+General description:
+
+	My portfolio mainly consists of the website I did that is now available online, along with various pieces of code I have written.
+
+	Table of Contents:
+
+		/code
+			- This contains the actual code that compiles, from which my
+				website is generated using the scripts I have written
+		/website
+			- Contains a "compiled" version of my website as it currently
+				exists online.
+		/website/Project/code/
+			- Contains the various pieces of code that I am using as samples
+			
+			/website/Project/code/addnumbers.asm
+				- Intel assembly program that adds two numbers together and
+					outputs it to the standard output
+			/website/Project/code/boebot.src
+				- SX assembly code written to emulate a Parallax Boe-Bot
+			/website/project/code/converhextobinary.asm
+				- Intel assembly program that converts a twos complement hex
+					to a binary number.
+			/website/project/code/ParseFCU.cc
+				- C++ program that converts the data that comes back from the
+					near space craft to a comma seperated value file so that
+					it may then be parsed using Excel and others
+		/website/Resume/
+			- Contains my current resume in both PDF and in HTML format. The
+				HTML file is used to create the PDF file, and the HTML may
+				not display correctly in browsers that are not WebKit based.
+
+		/website-builder/
+			- Contains all of the various scripts I have written to parse and
+				create HTML output using the code that is located in /code.
