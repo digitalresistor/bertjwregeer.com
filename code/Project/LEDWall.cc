@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008 {Bert JW Regeer}[http://bertjwregeer.com];
+ * Copyright (c) 2008 {Bert JW Regeer}[http://old.bertjwregeer.com];
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
