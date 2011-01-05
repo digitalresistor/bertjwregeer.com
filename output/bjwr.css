@@ -1,0 +1,286 @@
+/* @override http://localhost:8080/bjwr.css */
+
+/*
+ * Copyright (c) 2009 Bert JW Regeer;
+ *
+ * CSS Reset from: Eric Meyer (http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/)
+***/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+abbr, article, aside, audio, canvas, datalist, details,
+figure, footer, header, hgroup, mark, menu, meter, nav, output,
+progress, section, time, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: inherit;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+
+blockquote, q {
+	quotes: "" "";
+}
+
+/* The HTML5 elements are not properly styled yet by browsers that are not aware of HTML5. */
+
+header, footer, nav, section, article, aside {
+	display:block; 
+}
+
+/* Implement the styles here */
+
+body {
+	/* font-family: 'Linux Libertine', Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, 'Times New Roman', serif; */
+	font-family: Verdana, 'Bitstream Vera Sans', sans-serif;
+	font-size: 13px;
+	min-width: 600px;
+	width: 70%;
+	padding-top: 30px;
+	margin: auto;
+	background-color: #404040;
+	color: #cfcfcf;
+}
+
+header {
+	width: 100%;
+	padding-bottom: 0.5em;
+}
+
+header h1 {
+	font-size: 3em;
+	font-weight: bold;
+	color: #ee7b00;
+}
+
+/*
+These properties would work, but they are CSS 3 only and they don't work in older browsers
+
+box-sizing: border-box;
+
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+
+This is a simple work around, hopefully in the future I can get rid of the extra HTML that is generated.
+
+*/
+
+#Mwrapper {
+	float: right;
+	width: 75%;
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+#MainContent {	
+	padding: 0 10px 0 15px;
+}
+
+#Swrapper {
+	position: relative;
+	right: 0%;
+	width: 25%;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+#Swrapper > nav {
+	text-align: right;
+	font-size: 13px;
+	padding: 10px;
+	padding-top: 4.5em;
+	padding-right: 10px;
+	line-height: 19px;
+	border-right: 2px solid #ee7b00;
+	
+	/*
+	background-color: orange;
+	
+	TODO: Remove when final
+	
+	WTF was Mozilla smoking when they named their elements differently?
+	-moz-border-radius-bottomleft: 20px 20px;
+	-webkit-border-bottom-left-radius: 20px 20px;
+	border-bottom-left-radius: 20px 20px;
+	*/
+}
+
+nav > ul li h1 {
+	font-size: 1.3em;
+	line-height: 2.5em;
+	text-transform: uppercase;
+	color: #afafaf;
+}
+
+nav > ul li a {
+	color: #ee7b00;
+	text-decoration: none;
+}
+
+nav > ul li a:visited {
+	color: #ee7b00;
+	text-decoration: none;
+}
+
+nav > ul li a:hover {
+	color: #ee7b00;
+	background-color: #616161;
+}
+
+nav > ul li.current a {
+	color: #f64b00;
+	text-decoration: none;
+}
+
+footer {
+	clear: both;
+	width: 100%;
+	text-align: right;
+	padding-top: 15px;
+}
+
+footer > a {
+	color: #ee7b00;
+	text-decoration: none;
+}
+
+footer > a:visited {
+	color: #ee7b00;
+	text-decoration: none;
+}
+
+footer > a:hover {
+	color: #ee7b00;
+	background-color: #616161;
+}
+
+article.content a {
+	color: #afafaf;
+	text-decoration: underline;
+}
+
+article.content a:visited {
+	color: #cfcfcf;
+	text-decoration: underline;
+}
+
+article.content a:hover {
+	color: #afafaf;
+	background-color: #616161;
+	text-decoration: none;
+}
+
+article.content {
+	margin-top: 1em;
+	line-height: 18px;
+}
+
+article.content code {
+	color: #00bb00;
+	display: inline;
+	font-family: Consolas, 'Andale Mono', Monaco, 'Liberation Mono', 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', monospace;
+	white-space: pre;
+}
+
+article.content pre {
+	display: block;
+	overflow: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 40em;
+	padding-left: 2em;
+	margin-bottom: 5px;
+}
+
+article.content pre code {
+	line-height: 1em;
+}
+
+article.content p {
+	margin-bottom: 5px;
+}
+
+article.content ul {
+	margin-bottom: 5px;
+}
+
+article.content ul li:before {
+	content: "\00BB \0020";
+}
+
+article.content h1 {
+	font-size: 150%;
+	line-height: 1.5em;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+}
+
+article.content h2 {
+	font-size: 115%;
+	line-height: 1.5em;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+}
+
+article.content h3 {
+	font-weight: normal;
+	text-transform: uppercase;
+	font-size: 110%;
+	line-height: 1.3em;
+	margin-bottom: 10px;
+}
+
+article.content h4, article.content h5, article.content h6 {
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 1.3em;
+}
+
+article.content p + h1, article.content p + h2, article.content p + h3 {
+	margin-top: 10px;
+}
+
+ul.projects li p {
+	margin-top: 5px;
+	margin-left: 1em;
+}

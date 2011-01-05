@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Copyright (c) 2010 Bert JW Regeer -->
+	<head>
+		<title>Bert JW Regeer -- Christmas Tree</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/bjwr.css" />
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="author" href="/About_me.html" />
+		
+		<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+		<!--[if lt IE 9]> <script type="text/javascript" src="http://ie7-js.googlecode.com/svn/version/2.1(beta3)/IE9.js"></script><![endif]-->
+		
+		<script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-97351-8']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+	</head>
+	<body>
+		<div id="Mwrapper">
+		    <div id="MainContent">
+		        <header>
+        			<h1>Christmas Tree</h1>
+        		</header>
+        		
+		        <article class="content">
+    			    <p>A team of students that are collectively known as the 244'ers by the room number they hang out in came together and modified the Christmas Tree that <a href="http://uat.edu/" title="University of Advancing Technology">UAT</a> had placed in the commons area at UAT. We provided an online URL where people could go and turn the tree on and off or scroll the tree from top to bottom. This was featured in the <a href="http://www.uat.edu/academics/Geek_411.aspx">GEEK 411 magazine</a> that UAT puts out every so often. <a href="http://www.uat.edu/webmedia/pdf/uatmedia_12397.pdf">Full GEEK 411 Issue for Spring 2007 [PDF]</a>. <a href="/Project/pdf/christmastreehack.pdf" title="Article in GEEK 411 about the Christmas Tree hack">Copy of article from issue [PDF]</a>.</p>
+<h1>Hardware</h1>
+<p>The hardware we used was simple. The tree was purchased and put up by <a href="http://uat.edu/" title="University of Advancing Technology">UAT</a>. This was a classic fake Christmas tree you would find at any major retailer during the Christmas season. This mean that it was built in layers, and each layer had it's own ring of lights, these were all daisy chained together using standard wall plugs. We went in and just put in extension cords for each of the different layers, so that now each layer instead of being daisy chained to the previous was now on its own separate extension cord.</p>
+<p><a href="http://lostboy.net/" title="Ryan Clarke">Professor Clarke</a> had a ready built box which contained standard solid state relays. This meant that we could safely using a micro controller switch on and off 120 volt AC power. This was built into one of the standard blue boxes also used in the construction for housing, with the only thing being exposed being six wall plugs on the front face, each of which could be individually turned on and off.</p>
+<p>As a micro controller we used the <a href="http://www.parallax.com/tabid/295/Default.aspx">BASIC Stamp</a>, mainly for its ease of programming, and the fact that we had assumed it would be adequate for the job. Along with that we used a <a href="http://www.parallax.com/Store/Accessories/Communication/tabid/161/ProductID/40/CategoryID/36/List/0/Level/a/Default.aspx?SortField=ProductName,ProductName">PINK</a> (Parallax Internet Netburner Kit) which gave us a small embedded web server. The PINK is able to communicate over a serial connection to report HTML form submittals, so that the BASIC Stamp could then act upon them by changing the tree state to the state picked from the form on the website.</p>
+<p>In the end the following hardware was used:</p>
+<ul>
+<li><a href="http://www.parallax.com/tabid/295/Default.aspx">BASIC Stamp Controller</a></li>
+<li><a href="http://www.parallax.com/Store/Accessories/Communication/tabid/161/ProductID/40/CategoryID/36/List/0/Level/a/Default.aspx?SortField=ProductName,ProductName">PINK (Parallax Internet Netburner Kit)</a></li>
+<li><a href="http://efx-tek.com/topics/crydom.html">6 solid state relays</a></li>
+<li>Extension cords</li>
+<li>One unsuspecting tree</li>
+</ul>
+<h2>Simple Website</h2>
+<p>The PINK has a minimal amount of storage on-board which allows you to put small web pages on it. I ended up creating a quick and dirty small website that allowed the viewer to see what state the tree was currently in, and since we had two web cameras on campus, I embedded those on the web site as well so that the viewer would be able to see in real-time what their changes had done to the Christmas tree.</p>
+<h1>Hack was Hacked</h1>
+<p>Since the website was set up with a small form that allowed the browser to POST to the web server, it was rather simple to automate the turning on and off of the Christmas tree. We had clever people that were sending us messages over the tree by turning it on and off in morse code patterns, as well as just trying to turn it on and off as fast as they were able to send data to it (which annoyed other users, c'est la vie!). The best hack was when someone flashed S.O.S. on the tree early in the morning when campus was still pretty empty. It was a simple hack, but the one that stood out the most to me!</p>
+<h1>Aftermath</h1>
+<p>This was my very first project when I joined UAT, and it was done just to drum up interest for what hardware hacking is, and to get more people to join us in the 244 lab and work on interesting projects and to do something interesting for the campus as a whole on Christmas. Having place <a href="http://www.google.com/analytics/">Google Analytics</a> code on the web pages, we had a way to find out how many people visited the tree, the stats are as follows:</p>
+<ul>
+<li>Average: 4.76 Pages/Visitor</li>
+<li>Unique Visits: 4,323</li>
+<li>Pageviews: 20,577</li>
+</ul>
+<p>This does not include the amount of times people attempted to visit but the small embedded server was overloaded and unable to respond to the requests in time.</p>
+    			</article>
+    		</div>
+    	</div>
+		<div id="Swrapper">
+		    <nav>
+    	        <ul>
+<li><h1></h1>
+<ul>
+	<li><a href="/index.html" title="Bert JW Regeer">Main</a></li>
+	<li><a href="/About_me.html" title="About Me">About Me</a></li>
+	<li><a href="/Contact.html" title="Contact">Contact</a></li>
+	<li><a href="/Resume.html" title="Resume">Resume</a></li>
+</ul>
+</li>
+<li><h1>Projects</h1>
+<ul>
+	<li class="current"><a href="/Project/ChristmasTree.html" title="Christmas Tree">Christmas Tree</a></li>
+	<li><a href="/Project/LEDWall.html" title="LED Whiteboard">LED Whiteboard</a></li>
+	<li><a href="/Project/NearSpace.html" title="Near Space">Near Space</a></li>
+	<li><a href="/Project/Miscellaneous.html" title="Miscellaneous">Miscellaneous</a></li>
+	<li><a href="/Projects.html" title="All of Bert's Projects">More ...</a></li>
+</ul>
+</li>
+<li><h1>Networking</h1>
+<ul>
+	<li><a href="http://facebook.com/xistence/" title="Facebook: xistence">Facebook</a></li>
+	<li><a href="http://www.flickr.com/photos/xistence/" title="Flickr: xistence">Flickr</a></li>
+	<li><a href="http://news.ycombinator.com/user?id=X-Istence" title="Hacker News: X-Istence">Hacker News</a></li>
+	<li><a href="http://www.linkedin.com/in/bertjwregeer" title="LinkedIn: bertjwregeer">LinkedIn</a></li>
+	<li><a href="http://twitter.com/bertjwregeer" title="Twitter: @bertjwregeer">Twitter</a></li>
+</ul>
+</li></ul>
+        	</nav>
+        </div>
+		
+		<footer>
+		    <a href="http://bertjwregeer.com/">Bert JW Regeer</a> - <a href="/Contact.html">Contact</a> - 
+		    <a href="/About_me.html">About me</a> - <a href="/Projects.html">Projects</a>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Copyright (c) 2010 Bert JW Regeer -->
+	<head>
+		<title>Bert JW Regeer -- LED Whiteboard</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/bjwr.css" />
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="author" href="/About_me.html" />
+		
+		<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+		<!--[if lt IE 9]> <script type="text/javascript" src="http://ie7-js.googlecode.com/svn/version/2.1(beta3)/IE9.js"></script><![endif]-->
+		
+		<script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-97351-8']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+	</head>
+	<body>
+		<div id="Mwrapper">
+		    <div id="MainContent">
+		        <header>
+        			<h1>LED Whiteboard</h1>
+        		</header>
+        		
+		        <article class="content">
+    			    <p>UAT wanted to provide a location for <a href="http://uat.edu/" title="University of Advancing Technology">UAT</a> students to show off their art skills, to write down project ideas and to provide a board for poetry and various other literary works. The idea was to create a backlit whiteboard. The idea was kicked around UAT until it reached <a href="http://lostboy.net/" title="Ryan Clarke">Professor Clarke</a>, who then suggested that instead of just backlighting the board, the board should have LED's that can be individually controlled to be on or off. We ended up using an 8 by 26 array of blue LEDs spaced 6 inches apart, on a 4 feet by 28 feet wall.</p>
+<h1>Construction</h1>
+<p>The "wall" is made out of two separate layers. The top most layer is diffused acrylic, which helps diffuse the light. The second layer underneath that is thick sheet of plastic with holes drilled 6 inches apart. This allowed us to put the LED into the hole and glue it down. From there we ran wires between the different LED's to provide one common ground per column, and we ran a common anode per row. This allows us to turn on a single LED by grounding a column and providing a current to a row.</p>
+<h1>Hardware</h1>
+<p><a href="http://www.flickr.com/photos/xistence/4806497335/" title="LED Whiteboard by X-Istence, on Flickr"><img src="http://farm5.static.flickr.com/4097/4806497335_8ec33eb529.jpg" width="500" height="375" alt="LED Whiteboard" /></a></p>
+<p>The LED wall is being run off a standard <a href="http://www.parallax.com/StoreSearchResults/tabid/768/txtSearch/SX28/List/0/SortField/4/ProductID/355/Default.aspx">Parallax SX28</a>, some transistors for the rows since they had to provide a massive amount of power, and two <a href="http://www.maxim-ic.com/datasheet/index.mvp/id/4909">MAX6979</a> to sink the columns. The project was built on top of a breadboard as there was no time or need to create a PCB and have it manufactured specifically for this project.</p>
+<p>The MAX6979's are shift registers, this means we provide a clock signal to input the data into the chip at whatever speed we desire (within limits off course). It is an extremely simple serial communication protocol. So we only have to provide a CLK signal, a DIN for data in, a LE which is a latch enable, and OE which is the output enable. Shift registers can easily be chained so that we could control all of the shift registers using just 4 pins on the microcontroller. This serial protocol is extremely stable even in conditions where the clock speed of the microcontroller is constantly changing because of drift (the SX28 is not known for its internal clock correctness).</p>
+<p>For row control a demux was used. THis would only require 4 more pins on the microcontroller to control all of the transistors to turn on and off the row of LED's. A binary coded decimal is sent to the demux to select the transistor to turn on.</p>
+<p>In total 8 microcontroller pins were used in driving the entire display. This had the added benefit that the rest of the pins on the SX28 could be used for future add-ons to the display.</p>
+<p>The following hardware was used:</p>
+<ul>
+<li><a href="http://www.parallax.com/StoreSearchResults/tabid/768/txtSearch/SX28/List/0/SortField/4/ProductID/355/Default.aspx">Parallax SX28</a></li>
+<li>Demux</li>
+<li>Transistors</li>
+<li><a href="http://www.maxim-ic.com/datasheet/index.mvp/id/4909">MAX6979</a></li>
+<li>208 blue LEDs</li>
+</ul>
+<p><a href="http://www.flickr.com/photos/xistence/4807117700/" title="LED Whiteboard"><img src="http://farm5.static.flickr.com/4096/4807117700_d10051fe74.jpg" width="500" height="375" alt="LED Whiteboard" /></a></p>
+<h1>Future</h1>
+<p>Currently it is running <a href="http://en.wikipedia.org/wiki/Conway&apos;s_Game_of_Life">Conway's game of life</a>, and the board provides its function but at the same time it does not allow the students to interact with it in a new and novel way. The original idea that was presented was a serial port that was on the outside that then allowed students to walk up to it and program the LED's to flash various different shapes/patterns/pieces of art.</p>
+<h1>More pictures</h1>
+<p>More pictures can be found on my <a href="http://www.flickr.com/photos/xistence/sets/72157624407442567/">Flickr Whiteboard photo set</a>.</p>
+    			</article>
+    		</div>
+    	</div>
+		<div id="Swrapper">
+		    <nav>
+    	        <ul>
+<li><h1></h1>
+<ul>
+	<li><a href="/index.html" title="Bert JW Regeer">Main</a></li>
+	<li><a href="/About_me.html" title="About Me">About Me</a></li>
+	<li><a href="/Contact.html" title="Contact">Contact</a></li>
+	<li><a href="/Resume.html" title="Resume">Resume</a></li>
+</ul>
+</li>
+<li><h1>Projects</h1>
+<ul>
+	<li><a href="/Project/ChristmasTree.html" title="Christmas Tree">Christmas Tree</a></li>
+	<li class="current"><a href="/Project/LEDWall.html" title="LED Whiteboard">LED Whiteboard</a></li>
+	<li><a href="/Project/NearSpace.html" title="Near Space">Near Space</a></li>
+	<li><a href="/Project/Miscellaneous.html" title="Miscellaneous">Miscellaneous</a></li>
+	<li><a href="/Projects.html" title="All of Bert's Projects">More ...</a></li>
+</ul>
+</li>
+<li><h1>Networking</h1>
+<ul>
+	<li><a href="http://facebook.com/xistence/" title="Facebook: xistence">Facebook</a></li>
+	<li><a href="http://www.flickr.com/photos/xistence/" title="Flickr: xistence">Flickr</a></li>
+	<li><a href="http://news.ycombinator.com/user?id=X-Istence" title="Hacker News: X-Istence">Hacker News</a></li>
+	<li><a href="http://www.linkedin.com/in/bertjwregeer" title="LinkedIn: bertjwregeer">LinkedIn</a></li>
+	<li><a href="http://twitter.com/bertjwregeer" title="Twitter: @bertjwregeer">Twitter</a></li>
+</ul>
+</li></ul>
+        	</nav>
+        </div>
+		
+		<footer>
+		    <a href="http://bertjwregeer.com/">Bert JW Regeer</a> - <a href="/Contact.html">Contact</a> - 
+		    <a href="/About_me.html">About me</a> - <a href="/Projects.html">Projects</a>
+		</footer>
+	</body>
+</html>

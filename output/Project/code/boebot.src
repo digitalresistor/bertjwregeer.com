@@ -1,0 +1,142 @@
+DEVICE SX28, OSC4MHZ, TURBO, OPTIONX, STACKX
+FREQ 4000000
+IRC_CAL IRC_FAST
+
+reset Start
+
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;I/O Names
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+LServo	= RA.1
+RServo	= RA.0
+RCdS	= RB.0
+LCdS	= RB.1
+LWisker	= RB.2
+RWisker	= RB.3
+
+	org 8
+TimerH		ds 1
+TimerL		ds 1
+LTimer		ds 1
+RTimer		ds 1
+LSpeed		ds 1
+RSpeed		ds 1
+Gas		ds 1
+Wheel		ds 1
+SensorTmp	ds 1
+Temp		ds 1
+
+	org 0
+ISR
+	sb LServo
+		jmp :Right
+	dec LTimer
+	sz
+		jmp :Right
+	clrb LServo
+	mov LTimer, LSpeed
+:Right
+	sb RServo
+		jmp :Timer
+	dec RTimer
+	sz
+		jmp :Timer
+	clrb RServo
+	mov RTimer, RSpeed
+:Timer
+	dec TimerL
+	sz
+		jmp :ExitISR
+	mov TimerL, #171
+	dec TimerH
+	sz
+		jmp :ExitISR
+	mov TimerH, #9
+	setb LServo
+	setb RServo
+:ExitISR
+	mov w, #-52
+	retiw
+
+CalcValues
+	mov LSpeed, #115
+	mov RSpeed, #115
+	
+	add LSpeed, Gas
+	sub RSpeed, Gas
+	
+	add LSpeed, Wheel
+	add RSpeed, Wheel
+	ret        ;return to caller
+
+Start
+	clrb LServo
+	clrb RServo
+	mov !RA, #$00
+	mode $0e
+	mov !RB, #%11110011
+	mode $0f
+	mov !option, #%00001000
+	mov Gas, #0
+	mov Wheel, #0
+
+:Loop
+	mov SensorTmp, RB
+	
+	; Check if both whiskers are depressed
+	mov Temp, SensorTmp
+	and Temp, #%0001100
+	cje Temp, #12, :BackupTurn
+	
+	; Left whisker
+	sb SensorTmp.2
+		jmp :BackLeft
+		
+	; Right whisker
+	sb SensorTmp.3
+		jmp :BackRight
+		
+	; Right photo cell
+	sb SensorTmp.0
+		jmp :Left
+	
+	; Left photo cell
+	sb SensorTmp.1
+		jmp :Right
+		
+	; Move forward
+	mov Gas, #10
+	mov Wheel, #0
+	call CalcValues
+	jmp :Done
+
+:Left
+	mov Wheel, #-10
+	call CalcValues
+	jmp :Done
+
+:Right
+	mov Wheel, #10
+	call CalcValues
+	jmp :Done
+
+:BackLeft
+	mov Gas, #-5
+	mov Wheel, #5
+	call CalcValues
+	jmp :Done
+
+:BackRight
+	mov Gas, #-5
+	mov Wheel, #-5
+	call CalcValues
+	jmp :Done
+
+:BackupTurn
+	mov Gas, #-10
+	mov Wheel, #-2
+	call CalcValues
+	jmp :Done
+
+:Done
+	jmp :Loop
