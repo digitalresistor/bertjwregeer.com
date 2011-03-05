@@ -8,7 +8,8 @@ social = [
 	{'title': "Facebook",	'alt': "Facebook: xistence", 		'url': "http://facebook.com/xistence/"},
 	{'title': "LinkedIn",	'alt': "LinkedIn: bertjwregeer", 	'url': "http://www.linkedin.com/in/bertjwregeer"},
 	{'title': "Hacker News",'alt': "Hacker News: X-Istence",	'url': "http://news.ycombinator.com/user?id=X-Istence" },
-	{'title': "BitBucket",	'alt': "Bitbucket: xistence",		'url': "http://code.bertjwregeer.com/" }
+	{'title': "BitBucket",	'alt': "Bitbucket: xistence",		'url': "http://code.bertjwregeer.com/" },
+    {'title': "Github",     'alt': "Github: bertjwregeer",      'url': "https://github.com/bertjwregeer" }
 ]
 
 # Categories that exist
