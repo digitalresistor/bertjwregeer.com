@@ -25,27 +25,29 @@
 
         </script>
 	</head>
-	<body>
-		<div id="Mwrapper">
-		    <div id="MainContent">
-		        <header>
-        			<h1>{{ page["title"] }}</h1>
-        		</header>
-        		
-		        <article class="content">
-    			    {{ __content__ }}
-    			</article>
-    		</div>
-    	</div>
-		<div id="Swrapper">
-		    <nav>
-    	        <!--% print create_menu() %-->
-        	</nav>
+    <body>
+        <div id="Whole">
+            <div id="Mwrapper">
+                <div id="MainContent">
+                    <header>
+                    <h1>{{ page["title"] }}</h1>
+                    </header>
+
+                    <article class="content">
+                    {{ __content__ }}
+                    </article>
+                </div>
+            </div>
+            <div id="Swrapper">
+                <nav>
+                <!--% print create_menu() %-->
+                </nav>
+            </div>
+
+            <footer>
+            <a href="http://bertjwregeer.com/">Bert JW Regeer</a> - <a href="/Contact.html">Contact</a> - 
+            <a href="/About_me.html">About me</a> - <a href="/Projects.html">Projects</a>
+            </footer>
         </div>
-		
-		<footer>
-		    <a href="http://bertjwregeer.com/">Bert JW Regeer</a> - <a href="/Contact.html">Contact</a> - 
-		    <a href="/About_me.html">About me</a> - <a href="/Projects.html">Projects</a>
-		</footer>
-	</body>
+    </body>
 </html>

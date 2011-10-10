@@ -66,16 +66,15 @@ header, footer, nav, section, article, aside {
 
 /* Implement the styles here */
 
+html {
+	background: url(linen.png) #404040;
+	height: 100%;
+}
+
 body {
-	/* font-family: 'Linux Libertine', Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, 'Times New Roman', serif; */
-	font-family: Verdana, 'Bitstream Vera Sans', sans-serif;
-	font-size: 13px;
-	min-width: 600px;
-	width: 70%;
-	padding-top: 30px;
-	margin: auto;
+	min-height: 100%;
 	background-color: #404040;
-	color: #cfcfcf;
+	background-color: rgba(64,64,64,0.3);
 }
 
 header {
@@ -100,6 +99,18 @@ box-sizing: border-box;
 This is a simple work around, hopefully in the future I can get rid of the extra HTML that is generated.
 
 */
+
+#Whole {
+		/* font-family: 'Linux Libertine', Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, 'Times New Roman', serif; */
+	font-family: Verdana, 'Bitstream Vera Sans', sans-serif;
+	font-size: 13px;
+	min-width: 600px;
+	width: 70%;
+	padding-top: 30px;
+	margin: auto;
+	color: #cfcfcf;
+	background: none;
+}
 
 #Mwrapper {
 	float: right;
