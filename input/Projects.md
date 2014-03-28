@@ -4,7 +4,9 @@ alt: All of Bert's Projects
 sort: zzzzzzzzzzzzzzz
 category: 2
 ---
-Not all of my projects are listed in the menu on the left, this is where you can get a little bit more information about all of my projects as well as access to the projects that are not listed.
+Not all of my projects are listed in the menu on the left, this is where you
+can get a little bit more information about all of my projects as well as
+access to the projects that are not listed.
 
 # Projects
 
@@ -42,8 +44,16 @@ out = output % (pitems)
 print out
 %-->
 
+# [Github][2]
+
+There are a variety of projects that are not documented on this site, however
+they are available from my [Github][2] profile.
+
 # More information
 
-If you would like more information about any other projects that may not be listed here, or about any projects listed here please feel free to [contact me][1].
+If you would like more information about any other projects that may not be
+listed here, or about any projects listed here please feel free to [contact
+me][1].
 
 [1]: /Contact.html
+[2]: https://github.com/bertjwregeer "Github: Bert JW Regeer"
