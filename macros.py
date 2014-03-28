@@ -3,13 +3,15 @@ base_url = "http://bertjwregeer.com/"
 # It is 2011, time to add some of the social stuff we've heard so much about ...
 
 social = [
-	{'title': "Twitter",	'alt': "Twitter: @bertjwregeer",	'url': "http://twitter.com/bertjwregeer"},
-	{'title': "Flickr",	'alt': "Flickr: xistence", 		'url': "http://www.flickr.com/photos/xistence/"},
-	{'title': "Facebook",	'alt': "Facebook: xistence", 		'url': "http://facebook.com/xistence/"},
-	{'title': "LinkedIn",	'alt': "LinkedIn: bertjwregeer", 	'url': "http://www.linkedin.com/in/bertjwregeer"},
-	{'title': "Hacker News",'alt': "Hacker News: X-Istence",	'url': "http://news.ycombinator.com/user?id=X-Istence" },
-	{'title': "BitBucket",	'alt': "Bitbucket: xistence",		'url': "http://code.bertjwregeer.com/" },
-    {'title': "Github",     'alt': "Github: bertjwregeer",      'url': "https://github.com/bertjwregeer" }
+    {'title': "Twitter",     'alt': "Twitter: @bertjwregeer", 'url': "http://twitter.com/bertjwregeer"},
+    {'title': "Flickr",      'alt': "Flickr: xistence",       'url': "http://www.flickr.com/photos/xistence/"},
+    {'title': "Facebook",    'alt': "Facebook: xistence",     'url': "http://facebook.com/xistence/"},
+    {'title': "LinkedIn",    'alt': "LinkedIn: bertjwregeer", 'url': "http://www.linkedin.com/in/bertjwregeer"},
+    {'title': "Hacker News", 'alt': "Hacker News: X-Istence", 'url': "http://news.ycombinator.com/user?id=X-Istence" },
+    {'title': "BitBucket",   'alt': "Bitbucket: xistence",    'url': "http://code.bertjwregeer.com/" },
+    {'title': "Github",      'alt': "Github: bertjwregeer",   'url': "https://github.com/bertjwregeer" },
+    {'title': "Gittip",      'alt': "Gittip: betjwregeer",    'url': "https://www.gittip.com/bertjwregeer/"},
+    {'title': "funcptr",     'alt': "Technical Notebook",     'url': "http://funcptr.net/"},
 ]
 
 # Categories that exist
